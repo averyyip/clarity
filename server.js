@@ -19,5 +19,5 @@ app.get('/lecture_playback', function (req, res) {
 })
 
 app.listen(3000, function () {
-  console.log('Example app listening on port 3000!')
+  console.log('Clarity app listening on port 3000!')
 })
