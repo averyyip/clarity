@@ -25,17 +25,18 @@
 
     <script>
         var video = videojs('example_video_1').ready(function(){
-            var span = document.querySelector('span');
-            var tracks = video.textTracks()
+            var player = videojs('example_video_1')
+            var span = document.querySelector('#currentCue');
+            var tracks = player.textTracks()
 
-            // track.oncuechange = function(e) {
-            //     var cue = this.activeCues[0];
-            //     if (cue) {
-            //         span.innerHTML = '';
-            //         span.appendChild(cue.getCueAsHTML());
-            //     }
-            //
-            // };
+            tracks[0].oncuechange = function(e) {
+                var cue = this.activeCues[0];
+                if (cue) {
+                    span.innerHTML = '';
+                    span.appendChild(cue.getCueAsHTML());
+                }
+
+            };
         })
     </script>
 
@@ -67,6 +68,7 @@
 
     <script>
       var myPlayer = videojs('example_video_1');
+      myPlayer.textTracks()
       myPlayer.markers({
           markers: [
               {time: 2869, text: "this"}        
