@@ -21,6 +21,23 @@
      <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
         <track kind="captions" src="transcript.vtt" srclang="en" label="English" default>
     </video>
+    <span id="currentCue"></span>
+
+    <script>
+        var video = videojs('example_video_1').ready(function(){
+            var span = document.querySelector('span');
+            var tracks = video.textTracks()
+
+            // track.oncuechange = function(e) {
+            //     var cue = this.activeCues[0];
+            //     if (cue) {
+            //         span.innerHTML = '';
+            //         span.appendChild(cue.getCueAsHTML());
+            //     }
+            //
+            // };
+        })
+    </script>
 
     <div id="transcript"></div>
 
