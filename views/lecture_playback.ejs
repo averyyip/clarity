@@ -23,6 +23,24 @@
      <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
         <track kind="captions" src="transcript.vtt" srclang="en" label="English" default>
     </video>
+    <span id="currentCue"></span>
+
+    <script>
+        var video = videojs('example_video_1').ready(function(){
+            var player = videojs('example_video_1')
+            var span = document.querySelector('#currentCue');
+            var tracks = player.textTracks()
+
+            tracks[0].oncuechange = function(e) {
+                var cue = this.activeCues[0];
+                if (cue) {
+                    span.innerHTML = '';
+                    span.appendChild(cue.getCueAsHTML());
+                }
+
+            };
+        })
+    </script>
 
     <div id="transcript"></div>
 
@@ -52,6 +70,7 @@
 
     <script>
       var myPlayer = videojs('example_video_1');
+      myPlayer.textTracks()
       myPlayer.markers({
           markers: [
               {time: 2869, text: "this"}        
