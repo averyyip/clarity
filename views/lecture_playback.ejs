@@ -26,12 +26,14 @@
 
     <button id="keywordButton" type="button">Get Current Keywords</button>
 
+    <span id="currentKeywords"></span>
+
 
     <script>
         var video = videojs('example_video_1').ready(function(){
             var player = videojs('example_video_1')
             var button = document.querySelector('#keywordButton')
-            var span = document.querySelector('#currentCue');
+            var span = document.querySelector('#currentKeywords');
             var tracks = player.textTracks()
             var currentCue;
             const proxyurl = "https://cors-anywhere.herokuapp.com/";
@@ -47,7 +49,15 @@
                         },
                     })
                     .then((res)=>res.json())
-                    .then((data)=>console.log(data))
+                    .then((data)=>{
+                      span.innerHTML='<ul></ul>'
+                      for (var i = 0; i < data.length; i++){
+                        var node = document.createElement('LI')
+                        var textnode = document.createTextNode(data[i])
+                        node.appendChild(textnode)
+                        span.appendChild(node)
+                      }
+                    })
             })
             tracks[0].oncuechange = function(e) {
                 var cue = this.activeCues[0];
