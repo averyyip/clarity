@@ -156,7 +156,7 @@
           for (var line in result) {
             var obj = result[line];
             if (obj.text.toLowerCase().includes(query) || query == "") {
-              wrapper.append("<tr><td>" + obj.startTime.substr(0,8) + "</td><td>" + obj.text + "</td></tr>");
+              wrapper.append("<tr><td>" + obj.startTime.substr(0,8) + "</td><td> </td><td>" + obj.text + "</td></tr>");
             }
           }
         });
