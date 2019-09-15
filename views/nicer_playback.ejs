@@ -26,6 +26,7 @@
 
 		<!-- Header -->
 			<header id="header">
+				<a>Clarity</a>
 			</header>
 
 		<!-- Nav -->
@@ -52,18 +53,54 @@
 							<p id="choices"></p>
 						</header>
 						<div class="video">
-							<div class="video-wrapper">
-								<video id="example_video_1" class="video-js vjs-default-skin"
-							      controls preload="auto" width="640" height="264"
-							      data-setup='{"example_option":true}'>
-							     <source src="<%= video_link %>" type="video/mp4" />
-							     <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
-							        <track kind="captions" src="transcript.vtt" srclang="en" label="English" default>
-							    </video>
+								<style>
+									.container{
+									    display: flex;
+									}
+									.flex-item{
+									    flex-grow: 1;
+									}
 
-							    <button id="keywordButton" type="button">Get Current Keywords</button>
+									.transcript-timestamp {
+										color: #C1C7CD;
+									}
+								</style>
+								<div class="container">
+									<div class="fixed">
+										<video id="example_video_1" class="video-js vjs-default-skin"
+									      controls preload="auto" width="875" height="500"
+									      data-setup='{"example_option":true}'>
+									     <source src="<%= video_link %>" type="video/mp4" />
+									     <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
+									        <track kind="captions" src="transcript.vtt" srclang="en" label="English" default>
+								    	</video>
+								    </div>
 
-							    <span id="currentKeywords"></span>
+								    <div class="flex-item">
+								    	<button id="keywordButton" type="button">Get Current Keywords</button>
+								    	<div style="overflow-y: scroll" height="20">
+								    		<span id="currentKeywords"></span>
+								    	</div>
+								    	<br>
+								    	<input id="search" value="" placeholder="Search terms">
+										    <div style="overflow-y: scroll; height:338px; width:300px">
+										      <table id="result">
+										        <thead>
+										          <tr>
+										            <th>Start Time</th>
+										            <th></th>
+										            <th>Text</th>
+										          </tr>
+										        </thead>
+										        <tbody><tr><td colspan="4">...</td></tr></tbody>
+										      </table>
+										    </div>
+								    </div>
+								</div>	
+								<span id="transcript"></span>
+								</div>
+
+								
 
 
 							    <script>
@@ -107,23 +144,7 @@
 							    </script>
 
 
-							    <span id="transcript"></span>
-							    <script>
-							      var video = videojs('example_video_1').ready(function(){
-							        // Set up any options.
-							        var options = {
-							          showTitle: false,
-							          showTrackSelector: false,
-							        };
-
-							        // Initialize the plugin.
-							        var transcript = this.transcript(options);
-
-							        // Then attach the widget to the page.
-							        var transcriptContainer = document.querySelector('#transcript');
-							        transcriptContainer.appendChild(transcript.el());
-							      });
-							    </script>
+							    
 
 							    <script>
 							      var myPlayer = videojs('example_video_1');
@@ -136,20 +157,7 @@
 							       });
 							    </script>
 							
-
-							<input id="search" value="">
-						    <div style="overflow-y: scroll; height:200px; width:500px">
-						      <table id="result">
-						        <thead>
-						          <tr>
-						            <th>Start Time</th>
-						            <th></th>
-						            <th>Text</th>
-						          </tr>
-						        </thead>
-						        <tbody><tr><td colspan="4">...</td></tr></tbody>
-						      </table>
-						    </div>
+							
 						      <script>
 						        function readTextFile(file)
 						          {
@@ -222,7 +230,27 @@
 						        });
 						    </script>
 							
-						</div>
+						
+							    <script>
+							      var video = videojs('example_video_1').ready(function(){
+							        // Set up any options.
+							        var options = {
+							          showTitle: false,
+							          showTrackSelector: false,
+							        };
+
+							        // Initialize the plugin.
+							        var transcript = this.transcript(options);
+
+							        // Then attach the widget to the page.
+							        var transcriptContainer = document.querySelector('#transcript');
+							        transcriptContainer.appendChild(transcript.el());
+							      });
+							    </script>
+						
+					</div>
+
+
 						
 
 						</div>
@@ -273,7 +301,6 @@
 										CMU Databases Class - Lecture 4
 									</p>
 									<a href="generic.html" class="link"><span>Click Me</span></a>
-								</div>
 							</div>
 					</div>
 				</section>
