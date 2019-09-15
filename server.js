@@ -22,7 +22,7 @@ app.get('/', function (req, res) {
 })
 
 app.get('/lecture_playback', function (req, res) {
-  res.render('lecture_playback', {video_link: "https://clarity-mithacks.s3.us-east-2.amazonaws.com/classes/cmu_db_class/lecture1.mp4"});
+  res.render('nicer_playback', {video_link: "https://clarity-mithacks.s3.us-east-2.amazonaws.com/classes/cmu_db_class/lecture1.mp4"});
 })
 
 app.listen(3000, function () {

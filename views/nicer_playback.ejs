@@ -1,0 +1,292 @@
+<!DOCTYPE HTML>
+<!--
+	Broadcast by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+	<head>
+		<title>Generic - Broadcast by TEMPLATED</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="css/main.css" />
+
+		<link rel="stylesheet" type="text/css" href="/css/videojs-transcript.css">
+	    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+	    <link href="https://vjs.zencdn.net/7.6.0/video-js.css" rel="stylesheet">
+	    <script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
+	    <script src='https://vjs.zencdn.net/7.6.0/video.js'></script>
+	    <script src="https://rawgithub.com/spchuang/videojs-markers/master/dist/videojs-markers.js"></script>
+	    <script src="/js/videojs-transcript.js"></script>
+	    <link href="https://rawgithub.com/spchuang/videojs-markers/master/dist/videojs.markers.css" rel="stylesheet">
+	    <script src="https://raw.githubusercontent.com/MrSlide/parseSRT/master/build/parse-srt.js"></script>
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+	</head>
+	<body class="subpage">
+
+		<!-- Header -->
+			<header id="header">
+			</header>
+
+		<!-- Nav -->
+			<nav id="menu">
+				<ul class="links">
+					<li><a href="index.html">Home</a></li>
+					<li><a href="generic.html">Generic</a></li>
+					<li><a href="elements.html">Elements</a></li>
+				</ul>
+			</nav>
+
+		<!-- Main -->
+			<div id="main">
+
+			<!-- One -->
+				<section class="wrapper style1">
+					<div class="inner">
+						<header class="align-center">
+							<p id="lecture_num" class = "caption"></p>
+										<script>  // String written inside quotes
+									document.getElementById("lecture_num").innerHTML = x;
+								</script>
+							<h2>CMU Databases Class - Lecture 1</h2>
+							<p id="choices"></p>
+						</header>
+						<div class="video">
+							<div class="video-wrapper">
+								<video id="example_video_1" class="video-js vjs-default-skin"
+							      controls preload="auto" width="640" height="264"
+							      data-setup='{"example_option":true}'>
+							     <source src="<%= video_link %>" type="video/mp4" />
+							     <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
+							        <track kind="captions" src="transcript.vtt" srclang="en" label="English" default>
+							    </video>
+
+							    <button id="keywordButton" type="button">Get Current Keywords</button>
+
+							    <span id="currentKeywords"></span>
+
+
+							    <script>
+							        var video = videojs('example_video_1').ready(function(){
+							            var player = videojs('example_video_1')
+							            var button = document.querySelector('#keywordButton')
+							            var span = document.querySelector('#currentKeywords');
+							            var tracks = player.textTracks()
+							            var currentCue;
+							            const proxyurl = "https://cors-anywhere.herokuapp.com/";
+
+							            button.addEventListener("click",function () {
+							                console.log("button clicked")
+							                fetch(proxyurl+'http://api.cortical.io/rest/text/keywords?retina_name=en_associative', {
+							                        method: 'POST',
+							                        body: currentCue, // string or object
+							                        headers: {
+							                            'Content-Type': 'text/plain',
+							                            'api-key' : 'ace123b0-d767-11e9-8f72-af685da1b20e'
+							                        },
+							                    })
+							                    .then((res)=>res.json())
+							                    .then((data)=>{
+							                      span.innerHTML='<ul></ul>'
+							                      for (var i = 0; i < data.length; i++){
+							                        var node = document.createElement('LI')
+							                        var textnode = document.createTextNode(data[i])
+							                        node.appendChild(textnode)
+							                        span.appendChild(node)
+							                      }
+							                    })
+							            })
+							            tracks[0].oncuechange = function(e) {
+							                var cue = this.activeCues[0];
+							                if (cue) {
+							                    currentCue = cue.text
+							                }
+
+							            };
+							        })
+							    </script>
+
+
+							    <span id="transcript"></span>
+							    <script>
+							      var video = videojs('example_video_1').ready(function(){
+							        // Set up any options.
+							        var options = {
+							          showTitle: false,
+							          showTrackSelector: false,
+							        };
+
+							        // Initialize the plugin.
+							        var transcript = this.transcript(options);
+
+							        // Then attach the widget to the page.
+							        var transcriptContainer = document.querySelector('#transcript');
+							        transcriptContainer.appendChild(transcript.el());
+							      });
+							    </script>
+
+							    <script>
+							      var myPlayer = videojs('example_video_1');
+							      myPlayer.textTracks()
+							      myPlayer.markers({
+							          markers: [
+							              {time: 1720, text: "Database Management System"},
+							              {time: 2869, text: "Data Manipulation Languages"}        
+							          ]
+							       });
+							    </script>
+							
+
+							<input id="search" value="">
+						    <div style="overflow-y: scroll; height:200px; width:500px">
+						      <table id="result">
+						        <thead>
+						          <tr>
+						            <th>Start Time</th>
+						            <th></th>
+						            <th>Text</th>
+						          </tr>
+						        </thead>
+						        <tbody><tr><td colspan="4">...</td></tr></tbody>
+						      </table>
+						    </div>
+						      <script>
+						        function readTextFile(file)
+						          {
+						              var rawFile = new XMLHttpRequest();
+						              rawFile.open("GET", file, false);
+						              rawFile.onreadystatechange = function ()
+						              {
+						                  if(rawFile.readyState === 4)
+						                  {
+						                      if(rawFile.status === 200 || rawFile.status == 0)
+						                      {
+						                          var allText = rawFile.responseText;
+						                      }
+						                  }
+						              }
+						              rawFile.send(null);
+						              return rawFile.responseText;
+						          }
+
+						        var PF_SRT = function() {
+						          var pattern = /(\d+)\n([\d:,]+)\s+-{2}\>\s+([\d:,]+)\n([\s\S]*?(?=\n{2}|$))/gm;
+						          var _regExp;
+
+						          var init = function() {
+						            _regExp = new RegExp(pattern);
+						          };
+						          var parse = function(f) {
+						            if (typeof(f) != "string")
+						              throw "Sorry, Parser accept string only.";
+
+						            var result = [];
+						            if (f == null)
+						              return _subtitles;
+
+						            f = f.replace(/\r\n|\r|\n/g, '\n')
+
+						            while ((matches = pattern.exec(f)) != null) {
+						              result.push(toLineObj(matches));
+						            }
+						            return result;
+						          }
+						          var toLineObj = function(group) {
+						            return {
+						              line: group[1],
+						              startTime: group[2],
+						              endTime: group[3],
+						              text: group[4]
+						            };
+						          }
+						          init();
+						          return {
+						            parse: parse
+						          }
+						        }();
+
+
+						        var text = readTextFile("transcript.srt");
+						        var result = PF_SRT.parse(text);
+
+						        $("#search").on('change keydown paste input', function(){
+						          var query = $("#search").val().toLowerCase();
+						          var wrapper = $("#result tbody");
+						          wrapper.html('');
+						          for (var line in result) {
+						            var obj = result[line];
+						            if (obj.text.toLowerCase().includes(query) || query == "") {
+						              wrapper.append("<tr><td>" + obj.startTime.substr(0,8) + "</td><td> </td><td>" + obj.text + "</td></tr>");
+						            }
+						          }
+						        });
+						    </script>
+							
+						</div>
+						
+
+						</div>
+					</div>
+				</section>
+
+			<!-- Three -->
+				<section class="wrapper ">
+					<div class="inner">
+						<header class="align-center">
+							<h2>Browse more lectures </h2>
+						</header>
+
+						<!-- 3 Column Video Section -->
+							<div class="flex flex-3">
+								<div class="video col">
+									<div class="image fit">
+										<img src="images/pic09.jpg" alt="" />
+										<div class="arrow">
+											<div class="icon fa-play"></div>
+										</div>
+									</div>
+									<p class="caption">
+										CMU Databases Class - Lecture 2
+									</p>
+									<a href="generic.html" class="link"><span>Click Me</span></a>
+								</div>
+								<div class="video col">
+									<div class="image fit">
+										<img src="images/pic10.jpg" alt="" />
+										<div class="arrow">
+											<div class="icon fa-play"></div>
+										</div>
+									</div>
+									<p class="caption">
+										CMU Databases Class - Lecture 3
+									</p>
+									<a href="generic.html" class="link"><span>Click Me</span></a>
+								</div>
+								<div class="video col">
+									<div class="image fit">
+										<img src="images/pic11.jpg" alt="" />
+										<div class="arrow">
+											<div class="icon fa-play"></div>
+										</div>
+									</div>
+									<p class="caption">
+										CMU Databases Class - Lecture 4
+									</p>
+									<a href="generic.html" class="link"><span>Click Me</span></a>
+								</div>
+							</div>
+					</div>
+				</section>
+
+			</div>
+
+		
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
