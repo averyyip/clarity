@@ -12,6 +12,8 @@
     <script src="https://rawgithub.com/spchuang/videojs-markers/master/dist/videojs-markers.js"></script>
     <script src="/js/videojs-transcript.js"></script>
     <link href="https://rawgithub.com/spchuang/videojs-markers/master/dist/videojs.markers.css" rel="stylesheet">
+    <script src="https://raw.githubusercontent.com/MrSlide/parseSRT/master/build/parse-srt.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
   </head>
   <body>
     <video id="example_video_1" class="video-js vjs-default-skin"
@@ -74,6 +76,90 @@
               {time: 2869, text: "this"}        
           ]
        });
+    </script>
+
+    <input id="search" value="">
+    <div style="overflow-y: scroll; height:200px; width:500px">
+      <table id="result">
+        <thead>
+          <tr>
+            <th>Start Time</th>
+            <th>Text</th>
+          </tr>
+        </thead>
+        <tbody><tr><td colspan="4">...</td></tr></tbody>
+      </table>
+    </div>
+      <script>
+        function readTextFile(file)
+          {
+              var rawFile = new XMLHttpRequest();
+              rawFile.open("GET", file, false);
+              rawFile.onreadystatechange = function ()
+              {
+                  if(rawFile.readyState === 4)
+                  {
+                      if(rawFile.status === 200 || rawFile.status == 0)
+                      {
+                          var allText = rawFile.responseText;
+                      }
+                  }
+              }
+              rawFile.send(null);
+              return rawFile.responseText;
+          }
+
+        var PF_SRT = function() {
+          var pattern = /(\d+)\n([\d:,]+)\s+-{2}\>\s+([\d:,]+)\n([\s\S]*?(?=\n{2}|$))/gm;
+          var _regExp;
+
+          var init = function() {
+            _regExp = new RegExp(pattern);
+          };
+          var parse = function(f) {
+            if (typeof(f) != "string")
+              throw "Sorry, Parser accept string only.";
+
+            var result = [];
+            if (f == null)
+              return _subtitles;
+
+            f = f.replace(/\r\n|\r|\n/g, '\n')
+
+            while ((matches = pattern.exec(f)) != null) {
+              result.push(toLineObj(matches));
+            }
+            return result;
+          }
+          var toLineObj = function(group) {
+            return {
+              line: group[1],
+              startTime: group[2],
+              endTime: group[3],
+              text: group[4]
+            };
+          }
+          init();
+          return {
+            parse: parse
+          }
+        }();
+
+
+        var text = readTextFile("transcript.srt");
+        var result = PF_SRT.parse(text);
+
+        $("#search").on('change keydown paste input', function(){
+          var query = $("#search").val().toLowerCase();
+          var wrapper = $("#result tbody");
+          wrapper.html('');
+          for (var line in result) {
+            var obj = result[line];
+            if (obj.text.toLowerCase().includes(query) || query == "") {
+              wrapper.append("<tr><td>" + obj.startTime.substr(0,8) + "</td><td> </td><td>" + obj.text + "</td></tr>");
+            }
+          }
+        });
     </script>
   </body>
 </html>
