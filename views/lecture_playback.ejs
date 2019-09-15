@@ -23,19 +23,36 @@
      <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
         <track kind="captions" src="transcript.vtt" srclang="en" label="English" default>
     </video>
-    <span id="currentCue"></span>
+
+    <button id="keywordButton" type="button">Get Current Keywords</button>
+
 
     <script>
         var video = videojs('example_video_1').ready(function(){
             var player = videojs('example_video_1')
+            var button = document.querySelector('#keywordButton')
             var span = document.querySelector('#currentCue');
             var tracks = player.textTracks()
+            var currentCue;
+            const proxyurl = "https://cors-anywhere.herokuapp.com/";
 
+            button.addEventListener("click",function () {
+                console.log("button clicked")
+                fetch(proxyurl+'http://api.cortical.io/rest/text/keywords?retina_name=en_associative', {
+                        method: 'POST',
+                        body: currentCue, // string or object
+                        headers: {
+                            'Content-Type': 'text/plain',
+                            'api-key' : 'ace123b0-d767-11e9-8f72-af685da1b20e'
+                        },
+                    })
+                    .then((res)=>res.json())
+                    .then((data)=>console.log(data))
+            })
             tracks[0].oncuechange = function(e) {
                 var cue = this.activeCues[0];
                 if (cue) {
-                    span.innerHTML = '';
-                    span.appendChild(cue.getCueAsHTML());
+                    currentCue = cue.text
                 }
 
             };
@@ -60,7 +77,7 @@
         transcriptContainer.appendChild(transcript.el());
       });
     </script>
-    
+
     <script>
       var myPlayer = videojs('example_video_1');
       myPlayer.textTracks()
