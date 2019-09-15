@@ -4,11 +4,13 @@
     <meta charset="utf-8">
     <title>Test</title>
     <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/videojs-transcript.css">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
     <link href="https://vjs.zencdn.net/7.6.0/video-js.css" rel="stylesheet">
     <script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
     <script src='https://vjs.zencdn.net/7.6.0/video.js'></script>
     <script src="https://rawgithub.com/spchuang/videojs-markers/master/dist/videojs-markers.js"></script>
+    <script src="/js/videojs-transcript.js"></script>
     <link href="https://rawgithub.com/spchuang/videojs-markers/master/dist/videojs.markers.css" rel="stylesheet">
   </head>
   <body>
@@ -19,6 +21,25 @@
      <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
         <track kind="captions" src="transcript.vtt" srclang="en" label="English" default>
     </video>
+
+    <div id="transcript"></div>
+
+    <script>
+      var video = videojs('example_video_1').ready(function(){
+        // Set up any options.
+        var options = {
+          showTitle: false,
+          showTrackSelector: false,
+        };
+
+        // Initialize the plugin.
+        var transcript = this.transcript(options);
+
+        // Then attach the widget to the page.
+        var transcriptContainer = document.querySelector('#transcript');
+        transcriptContainer.appendChild(transcript.el());
+      });
+    </script>
 
     <script>
       var myPlayer = videojs('example_video_1');
