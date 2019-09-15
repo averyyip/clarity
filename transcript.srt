@@ -1,0 +1,5695 @@
+1
+00:00:00,270 --> 00:00:02,160
+[inaudible].
+
+2
+00:00:12,300 --> 00:00:16,560
+Welcome back. [inaudible]
+this is 15, four 45,
+
+3
+00:00:16,560 --> 00:00:20,570
+six 45 database systems or
+intro database systems. Ah,
+
+4
+00:00:20,790 --> 00:00:25,080
+my name is Andy. Uh, I'm pretty
+sure everyone is in the right place.
+
+5
+00:00:25,470 --> 00:00:28,170
+Um, so before we begin,
+
+6
+00:00:28,170 --> 00:00:30,790
+I wanna spend a little time
+talking about what this course is,
+
+7
+00:00:30,790 --> 00:00:34,470
+is sort of means to me. Uh, so I had,
+
+8
+00:00:34,470 --> 00:00:38,730
+I'm going to dedicate this course
+to, uh, my mentor Leon wrinkles. Um,
+
+9
+00:00:38,760 --> 00:00:43,260
+he passed away, uh, earlier in the year.
+
+10
+00:00:43,440 --> 00:00:46,380
+He was listed as one of the
+original data scientists, right?
+
+11
+00:00:46,380 --> 00:00:49,470
+He has five TVs in it. He was doing,
+he started doing data science for data,
+
+12
+00:00:49,680 --> 00:00:52,920
+data science was a thing. Um,
+
+13
+00:00:53,140 --> 00:00:56,200
+so he really meant a lot to me
+and this is with me and him, uh,
+
+14
+00:00:56,250 --> 00:00:59,520
+and my phd student joy and Mirage
+earlier in the year and when he was at
+
+15
+00:00:59,520 --> 00:01:02,670
+hospice. So, um, you know, just as,
+
+16
+00:01:02,670 --> 00:01:04,950
+as you go throughout the course that
+he's always going to be in the back of my
+
+17
+00:01:04,950 --> 00:01:08,880
+mind with everything. The other thing
+I like to say also too is that, uh,
+
+18
+00:01:08,880 --> 00:01:13,740
+I wanna thank both DB, uh, for sponsoring
+the course, right? They provided,
+
+19
+00:01:13,800 --> 00:01:16,880
+uh, funding for course development. Um,
+
+20
+00:01:16,920 --> 00:01:20,120
+so there'll be coming later
+in the semester to give a, uh,
+
+21
+00:01:20,160 --> 00:01:22,090
+sort of guest lecture at
+the end, and it's going,
+
+22
+00:01:22,100 --> 00:01:25,860
+it'll be a nice wrap up to talk about
+all the things that we'll discuss during
+
+23
+00:01:25,860 --> 00:01:29,100
+the lecture and you'll see how
+it's being applied, uh, in,
+
+24
+00:01:29,100 --> 00:01:33,810
+in real database systems. So we're
+very appreciative of them, right?
+
+25
+00:01:33,810 --> 00:01:36,450
+So the clicker room does not work.
+
+26
+00:01:38,510 --> 00:01:42,210
+All right. So before we send out,
+
+27
+00:01:42,210 --> 00:01:44,340
+get into the details of the course. Uh,
+
+28
+00:01:44,580 --> 00:01:46,860
+I wanna tell you a little
+bit about myself. Um,
+
+29
+00:01:47,340 --> 00:01:51,540
+I really only care about two
+things in my life, right? Uh,
+
+30
+00:01:51,540 --> 00:01:56,280
+the first one is my wife. The
+second one is databases, right?
+
+31
+00:01:56,550 --> 00:02:00,330
+I don't care about anything else.
+I don't talk to my family. Uh,
+
+32
+00:02:00,330 --> 00:02:03,060
+I don't have any children. The
+dogs, probably number three,
+
+33
+00:02:03,060 --> 00:02:04,650
+depending on the day, right? But like,
+
+34
+00:02:04,980 --> 00:02:06,900
+I really don't care anything
+about anything else.
+
+35
+00:02:07,350 --> 00:02:10,320
+So what that means is that when
+I start talking about databases,
+
+36
+00:02:10,320 --> 00:02:13,980
+I get very excited and I start
+talking very quickly, right?
+
+37
+00:02:14,250 --> 00:02:15,570
+So if I go too fast,
+
+38
+00:02:15,630 --> 00:02:18,570
+I need you to raise your hand and tell
+me to shut up and slow down and repeat
+
+39
+00:02:18,570 --> 00:02:19,710
+myself. Right.
+
+40
+00:02:20,340 --> 00:02:22,890
+Cause if you're confused about something
+and somebody else is going to be
+
+41
+00:02:22,890 --> 00:02:25,350
+confused about something, so
+please tell me to slow down.
+
+42
+00:02:26,040 --> 00:02:30,660
+The other thing I also say too is that I
+will not answer any questions about the
+
+43
+00:02:30,660 --> 00:02:34,800
+course material or the lecture
+after the class is over. Right?
+
+44
+00:02:34,800 --> 00:02:37,560
+So in previous years what will happen
+is I'll give a lecture and then
+
+45
+00:02:37,560 --> 00:02:38,940
+immediately afterwards, like five,
+
+46
+00:02:38,940 --> 00:02:42,060
+he will run up to Russ the stage and
+ask me questions about like, you know,
+
+47
+00:02:42,060 --> 00:02:44,430
+slide 23 during the lecture. Right.
+
+48
+00:02:44,730 --> 00:02:47,280
+I refuse to answer any of those questions
+because if you have any questions
+
+49
+00:02:47,280 --> 00:02:50,220
+about the material, stop
+me while I'm speaking.
+
+50
+00:02:50,430 --> 00:02:51,750
+Cause if you're confused about something,
+
+51
+00:02:51,750 --> 00:02:54,570
+somebody else is gonna be confused
+about something too. Okay?
+
+52
+00:02:54,960 --> 00:02:58,260
+So I will more than happy
+to answer questions about
+the lecture as we go along.
+
+53
+00:02:58,470 --> 00:03:03,310
+I will answer any questions about
+the, uh, the material, uh, at the end.
+
+54
+00:03:03,640 --> 00:03:05,590
+Okay. Alright.
+
+55
+00:03:06,250 --> 00:03:09,520
+So today's agenda is going
+to be split into two parts.
+
+56
+00:03:09,820 --> 00:03:12,100
+We'll start off with talking
+about the logistics of the course,
+
+57
+00:03:12,100 --> 00:03:15,770
+what the plan is, what you
+expected of you as the student. Um,
+
+58
+00:03:15,820 --> 00:03:20,210
+and then we'll sort of jump right into
+the material and start talking about, uh,
+
+59
+00:03:20,230 --> 00:03:24,250
+the relation model in relational
+Algebra. Okay. And again, the, the,
+
+60
+00:03:24,340 --> 00:03:29,340
+the assessment in the back is meant to
+be a test of your knowledge and skill
+
+61
+00:03:29,350 --> 00:03:32,410
+with c plus. Plus they should really
+take you two or three minutes.
+
+62
+00:03:32,410 --> 00:03:35,530
+My PJ student or my students here
+took two or three minutes, right?
+
+63
+00:03:35,530 --> 00:03:38,050
+But they didn't [inaudible] all year. Um,
+
+64
+00:03:38,350 --> 00:03:40,570
+so we're not gonna teach
+you for those lots to you.
+
+65
+00:03:40,600 --> 00:03:43,450
+If you're not comfortable with
+c Plus, plus, then you either,
+
+66
+00:03:43,450 --> 00:03:46,600
+this might not be the right course for
+you or you need to sort of brush up on
+
+67
+00:03:46,600 --> 00:03:50,320
+your CBOs skills, uh, before we get
+going on the course projects. Okay.
+
+68
+00:03:51,460 --> 00:03:55,270
+Now, the most important thing that
+you guys probably care about is, uh,
+
+69
+00:03:55,270 --> 00:03:58,480
+the wait list. Uh, as of this morning,
+
+70
+00:03:58,480 --> 00:04:01,390
+we're back up to 150 people. Uh,
+
+71
+00:04:01,600 --> 00:04:04,300
+the Max capacity is currently
+like a hundred or so.
+
+72
+00:04:04,300 --> 00:04:07,270
+I think we're like one oh
+two one oh three. Right.
+
+73
+00:04:07,480 --> 00:04:11,680
+So if you're on the wait list, I'm sorry,
+we just, we just can't take everyone.
+
+74
+00:04:11,890 --> 00:04:15,070
+Okay. So we will, uh,
+
+75
+00:04:15,460 --> 00:04:18,520
+people drop the course and we'll
+pull people off the wait list, uh,
+
+76
+00:04:18,700 --> 00:04:22,030
+and enroll them. And the way we're
+gonna do this as that in this,
+
+77
+00:04:22,360 --> 00:04:25,750
+we all sign you based on the order
+that you complete the first homework
+
+78
+00:04:25,750 --> 00:04:30,130
+assignment with 100% score. Right.
+And that way we're not dealing with,
+
+79
+00:04:30,130 --> 00:04:32,650
+you know, what program are you
+in when you graduating, right.
+
+80
+00:04:32,770 --> 00:04:34,390
+If you've completed the
+first homework assignment,
+
+81
+00:04:34,390 --> 00:04:37,320
+which we'll give out on
+Wednesday, we will, uh, we're,
+
+82
+00:04:37,340 --> 00:04:41,410
+we're ignoring the wait list order on
+the, on S3 the order. You complete that.
+
+83
+00:04:41,410 --> 00:04:43,750
+If the order that we will
+meet you in the course. Okay.
+
+84
+00:04:43,750 --> 00:04:48,480
+And we'll keep doing this until we get
+full. Okay. As far as the, you know,
+
+85
+00:04:48,490 --> 00:04:50,770
+this the most fair thing we've,
+we've, we've come up with,
+
+86
+00:04:51,310 --> 00:04:54,760
+they don't has any better idea, uh,
+bribing. The TA's does not work.
+
+87
+00:04:54,760 --> 00:04:58,480
+We got in trouble last year for
+that, so please don't do that. Uh,
+
+88
+00:04:58,660 --> 00:05:02,380
+we'll just do it based on
+homework one. Any questions?
+
+89
+00:05:03,910 --> 00:05:08,350
+Yes, the whole will be
+auto lab. It'll be on SQL
+
+90
+00:05:10,190 --> 00:05:13,180
+right. And Willie's that don't release
+that on Wednesday. And so you'll get,
+
+91
+00:05:13,210 --> 00:05:15,940
+you'll get a score right
+back. Uh, and auto lab.
+
+92
+00:05:15,940 --> 00:05:18,220
+Keep track of the submission
+history so we know who you know,
+
+93
+00:05:18,640 --> 00:05:19,510
+who submitted first
+
+94
+00:05:23,770 --> 00:05:26,590
+question is if he's on the wait list,
+we have access to auto lab. Yes.
+
+95
+00:05:26,590 --> 00:05:29,380
+When we open it up on Wednesday,
+everyone on wait list on the wait list.
+
+96
+00:05:29,380 --> 00:05:30,670
+We'll also, we'll have
+access to all the lab.
+
+97
+00:05:33,850 --> 00:05:37,810
+Any other questions? Okay.
+
+98
+00:05:38,200 --> 00:05:43,000
+The seats in the front if you want to
+sit down. All right, so this course,
+
+99
+00:05:43,930 --> 00:05:45,430
+1545, six 45,
+
+100
+00:05:45,610 --> 00:05:50,610
+this course is all about
+the design principles of a
+database management systems.
+
+101
+00:05:52,120 --> 00:05:54,790
+So specifically we're going
+to look at disc oriented,
+
+102
+00:05:55,130 --> 00:05:59,330
+a relational database management and
+we'll cover what that is as we go
+
+103
+00:05:59,330 --> 00:06:00,920
+throughout the semester.
+
+104
+00:06:01,190 --> 00:06:04,490
+But all I'll say is that this is not
+a course about how to actually build
+
+105
+00:06:04,490 --> 00:06:08,810
+database applications or model
+database applications. Right.
+
+106
+00:06:08,990 --> 00:06:13,040
+I'll teach you a advanced SQL
+on on Wednesday this week,
+
+107
+00:06:13,160 --> 00:06:16,070
+but I'm assuming most people already
+knew how to write basic sequel, right?
+
+108
+00:06:16,070 --> 00:06:18,830
+Or build database
+applications already, right?
+
+109
+00:06:18,830 --> 00:06:20,900
+So we're really focusing on
+how do you actually build that,
+
+110
+00:06:20,900 --> 00:06:25,400
+the underlying software to
+manage the database, right?
+
+111
+00:06:25,460 --> 00:06:27,080
+So this is not what
+you're looking for, right?
+
+112
+00:06:27,080 --> 00:06:29,910
+This is why I'm asking you to take
+the CFO plus self exam, right?
+
+113
+00:06:29,930 --> 00:06:31,910
+This is a project intensive course.
+
+114
+00:06:32,360 --> 00:06:34,820
+If you care about more about the
+high level things about you know,
+
+115
+00:06:34,940 --> 00:06:36,800
+how to model or administrator database.
+
+116
+00:06:37,220 --> 00:06:41,210
+Then the alternative you might want
+to look at is CMU 95 seven or three in
+
+117
+00:06:41,210 --> 00:06:42,043
+Heinz College,
+
+118
+00:06:42,470 --> 00:06:45,710
+I think it might be just called
+databases or database information system,
+
+119
+00:06:45,710 --> 00:06:47,480
+something like that. Okay. Again,
+
+120
+00:06:47,480 --> 00:06:51,800
+this is a computer science course about
+the design of a database management
+
+121
+00:06:51,800 --> 00:06:52,633
+software.
+
+122
+00:06:52,970 --> 00:06:57,080
+Now there was also another database course
+in CSD called database applications.
+
+123
+00:06:57,260 --> 00:06:58,480
+That was sort of a hybrid routine.
+
+124
+00:06:58,500 --> 00:07:03,500
+Heinz College course and what this
+course is 15 four 15 or six 15 so you
+
+125
+00:07:04,250 --> 00:07:05,840
+somebody who may have signed up for that.
+
+126
+00:07:06,170 --> 00:07:10,910
+Unfortunately that's been canceled because
+Professor Christus Soludos is taking
+
+127
+00:07:10,910 --> 00:07:15,290
+another year off to go join
+his, uh, ag pop cover band.
+
+128
+00:07:15,590 --> 00:07:18,950
+Right. Um, so this is their album
+they put out earlier in the year. Uh,
+
+129
+00:07:18,950 --> 00:07:20,570
+so unfortunately he's gone.
+
+130
+00:07:20,570 --> 00:07:23,510
+So that's not going to be a taught this
+year as well. So as far as you know,
+
+131
+00:07:23,510 --> 00:07:28,430
+this is the only CSD course
+available for databases. So the,
+
+132
+00:07:28,430 --> 00:07:31,220
+the way to think about how we're gonna
+organize the course material is that
+
+133
+00:07:32,240 --> 00:07:35,420
+pretty much this week is the only week
+we'll talk about sort of the high level
+
+134
+00:07:35,420 --> 00:07:37,010
+stuff, but how do you actually the,
+
+135
+00:07:37,060 --> 00:07:41,150
+the theory behind database systems or
+relational model and how do you write SQL
+
+136
+00:07:41,150 --> 00:07:44,120
+on it. And then going
+forward, starting next week,
+
+137
+00:07:44,360 --> 00:07:47,330
+we're going to start at the bottom of the
+stack and start building up the layers
+
+138
+00:07:47,330 --> 00:07:49,750
+to actually build a database
+management system, right?
+
+139
+00:07:49,760 --> 00:07:52,940
+So by the end of the semester, you
+should be able to know and understand,
+
+140
+00:07:53,330 --> 00:07:56,450
+you know, pretty much how any
+database man of is going to be built.
+
+141
+00:07:56,960 --> 00:08:00,020
+Now there'll be some in-memory stuff
+we'll talk about in the advanced class in
+
+142
+00:08:00,020 --> 00:08:00,853
+the spring,
+
+143
+00:08:00,860 --> 00:08:03,980
+but this is really like the fundamentals
+of pretty much every single database
+
+144
+00:08:03,980 --> 00:08:07,250
+system that's out there, right? So we'll
+start off with talking about storage.
+
+145
+00:08:07,250 --> 00:08:09,380
+And then on top of that we'll tell
+you how to do query execution.
+
+146
+00:08:09,670 --> 00:08:10,400
+Now on top of that,
+
+147
+00:08:10,400 --> 00:08:13,950
+we'll talk about how to do a transaction
+management with concur to control. Um,
+
+148
+00:08:14,040 --> 00:08:17,180
+and then we'll talk about how to do
+recovery and maintaining logs and
+
+149
+00:08:17,180 --> 00:08:20,210
+checkpoints and things like that.
+And at the end of the semester,
+
+150
+00:08:20,210 --> 00:08:24,560
+we'll spend a few weeks talking about
+distributed databases or cloud databases.
+
+151
+00:08:25,040 --> 00:08:26,630
+And now I like to finish up the last week,
+
+152
+00:08:26,660 --> 00:08:31,660
+which I call sort of a system popery
+where we sort of do a brain dump on here's
+
+153
+00:08:32,120 --> 00:08:35,480
+how a bunch of different real world
+database management systems are actually
+
+154
+00:08:35,480 --> 00:08:36,560
+implemented. Again,
+
+155
+00:08:36,560 --> 00:08:39,530
+the volt TV guys will come and give a
+talk and then I like to spend the last
+
+156
+00:08:39,530 --> 00:08:39,830
+class.
+
+157
+00:08:39,830 --> 00:08:42,290
+If you're just letting you guys pick
+any database system and I'll spend 10
+
+158
+00:08:42,290 --> 00:08:44,420
+minutes discussing how it works, right?
+
+159
+00:08:44,420 --> 00:08:47,510
+And this is useful because now you'll
+be able to apply the techniques that we
+
+160
+00:08:47,510 --> 00:08:51,230
+talk about during the lecturer or the
+semester and see how they actually can,
+
+161
+00:08:51,260 --> 00:08:53,090
+are used in, in real world systems.
+
+162
+00:08:54,710 --> 00:08:58,710
+So chorus policy and the schedule
+are available on the course website,
+
+163
+00:08:59,010 --> 00:09:03,840
+which I sent out last night on Piazza.
+Um, again, this is an upper level course.
+
+164
+00:09:03,840 --> 00:09:06,240
+I shouldn't have to go over
+to academic honesty policy,
+
+165
+00:09:06,330 --> 00:09:08,730
+but that's the link to it at CMU. Right?
+
+166
+00:09:08,730 --> 00:09:11,550
+Just the bottom line is
+don't be stupid. Right?
+
+167
+00:09:12,000 --> 00:09:15,390
+This is not a group project course.
+Everything should be done individually,
+
+168
+00:09:15,540 --> 00:09:19,560
+even the c plus all
+self-assessment. Uh, and so I would,
+
+169
+00:09:19,560 --> 00:09:23,040
+I prefer is that if you're
+unsure about something, right,
+
+170
+00:09:23,070 --> 00:09:25,350
+please come ask me whether that's
+the right thing to do or not.
+
+171
+00:09:25,350 --> 00:09:27,750
+Cause I rather have you say, hey
+look, I, I've been, you know,
+
+172
+00:09:27,830 --> 00:09:31,110
+working with somebody on our project
+up are both writing separate code.
+
+173
+00:09:31,110 --> 00:09:31,943
+Is that okay?
+
+174
+00:09:31,980 --> 00:09:35,280
+I'd rather have you come talk to me first
+rather than me find out later on that
+
+175
+00:09:35,280 --> 00:09:38,460
+you guys been copying code from each
+other and then we have to send you over to
+
+176
+00:09:38,460 --> 00:09:40,550
+Warner Hall. Destroy your life. Right.
+
+177
+00:09:40,550 --> 00:09:42,890
+So do the bottom line is
+please don't be stupid. Okay.
+
+178
+00:09:42,890 --> 00:09:46,910
+If you're not sure about something and
+please ask me all the discussions and
+
+179
+00:09:46,910 --> 00:09:50,930
+announcements for the course will be on
+Piatsa. Uh, if you're on the wait list,
+
+180
+00:09:50,930 --> 00:09:52,670
+you should be able to
+sign up for this. Right?
+
+181
+00:09:52,670 --> 00:09:56,480
+I don't think there's any restrictions
+there. A CMU wants me to use canvas,
+
+182
+00:09:56,840 --> 00:09:59,570
+right? We use that. Last year
+it was, it was a disaster.
+
+183
+00:09:59,720 --> 00:10:02,960
+So everything will be
+done on, on Piazza. Okay.
+
+184
+00:10:04,970 --> 00:10:09,900
+There is a textbook for this course, a
+database systems constant from, from Abi.
+
+185
+00:10:09,940 --> 00:10:14,930
+Uh, Hank and Shawna.
+Sean, um, the, this is a,
+
+186
+00:10:15,020 --> 00:10:15,740
+this is my opinion.
+
+187
+00:10:15,740 --> 00:10:18,350
+This is actually probably the best
+database systems textbook on the,
+
+188
+00:10:18,350 --> 00:10:21,290
+on the market. Now. A lot of them
+are that are out there that looks at,
+
+189
+00:10:21,290 --> 00:10:23,660
+most of them are like 10, 15 years old.
+
+190
+00:10:23,900 --> 00:10:27,980
+This one I think is maybe six
+or eight years old by now,
+
+191
+00:10:28,270 --> 00:10:29,960
+but the newer version is
+coming out in this year,
+
+192
+00:10:29,960 --> 00:10:33,920
+but the sixth version is good
+enough for what we want. Um,
+
+193
+00:10:34,550 --> 00:10:38,150
+so again, W for every single
+lecture I'll provide the chapters,
+
+194
+00:10:38,150 --> 00:10:41,420
+you can read for supplemental information
+to go over the material a bit more
+
+195
+00:10:41,420 --> 00:10:43,240
+detail. Uh, I,
+
+196
+00:10:43,250 --> 00:10:46,670
+but there'll be some material that's
+actually not covered in the textbook.
+
+197
+00:10:47,030 --> 00:10:51,290
+And so for every single lecture we'll
+also provide lecture notes that cover the,
+
+198
+00:10:51,350 --> 00:10:54,680
+the, so the main points that
+were discussed during class
+
+199
+00:10:57,080 --> 00:11:00,620
+for the grades, uh, the distribution
+will look like this, right?
+
+200
+00:11:00,620 --> 00:11:03,530
+So if you're a scs Undergrad, uh,
+
+201
+00:11:03,530 --> 00:11:06,740
+this class now counts for
+the systems elective, right?
+
+202
+00:11:06,740 --> 00:11:10,100
+And the requirement there is it has
+to have over 40% count for projects.
+
+203
+00:11:10,100 --> 00:11:12,490
+And that's why it's 45% per projects. Um,
+
+204
+00:11:12,500 --> 00:11:14,780
+so there'll be a midterm
+exam and a final exam.
+
+205
+00:11:15,170 --> 00:11:19,310
+And then later on in a few weeks I'll
+discuss the opportunity for doing extra
+
+206
+00:11:19,310 --> 00:11:22,310
+credit. Basically, we're writing
+an encyclopedia about databases.
+
+207
+00:11:22,340 --> 00:11:25,160
+So you pick one database system that you
+want to learn about and you just write
+
+208
+00:11:25,160 --> 00:11:29,120
+an article for it. Okay. And again,
+I'll cover this late in the semester.
+
+209
+00:11:30,910 --> 00:11:33,320
+Alright. For the homework to
+be five during the semester,
+
+210
+00:11:33,440 --> 00:11:36,320
+the first one will be the SQL assignment
+that we're putting out on Wednesday,
+
+211
+00:11:36,440 --> 00:11:39,320
+and that one will be submitted through
+auto lab and it'd be auto graded and you
+
+212
+00:11:39,320 --> 00:11:40,310
+get feedback right away.
+
+213
+00:11:40,670 --> 00:11:43,730
+And then all the rest of the homework
+assignments will be pens on paper that
+
+214
+00:11:43,730 --> 00:11:48,080
+you'll submit a pds or
+photographs on a on grade scope.
+
+215
+00:11:48,670 --> 00:11:51,680
+Okay. And again, these should
+be all be done done individually
+
+216
+00:11:53,710 --> 00:11:56,820
+for the projects. Uh, the,
+it's sort of like the,
+
+217
+00:11:56,820 --> 00:12:01,550
+in the Ols class four 40, where you're
+sort of building out your own, uh,
+
+218
+00:12:01,690 --> 00:12:05,470
+core piece of software and every single
+project will build on your previous
+
+219
+00:12:05,470 --> 00:12:08,050
+implementation. So by
+the end of the semester,
+
+220
+00:12:08,080 --> 00:12:11,910
+the goal would be to actually build
+your own database storage manager, um,
+
+221
+00:12:12,130 --> 00:12:12,730
+from scratch.
+
+222
+00:12:12,730 --> 00:12:14,970
+And we'll provide you guys from some
+scaffolding and sort of fill in the,
+
+223
+00:12:14,970 --> 00:12:19,540
+the key parts. Um, so again, for this
+and it's gonna be all in c plus plus 11.
+
+224
+00:12:19,920 --> 00:12:22,060
+Um, so we're not going to teach
+you how to write seabass laws.
+
+225
+00:12:22,300 --> 00:12:25,210
+You can't come to office hours and
+say, I don't understand c plus clause.
+
+226
+00:12:25,540 --> 00:12:27,160
+We're not gonna teach you how to use GDB,
+
+227
+00:12:27,730 --> 00:12:30,880
+right or not can get you all the
+other tools to do debugging. Again,
+
+228
+00:12:30,880 --> 00:12:34,150
+this is CMU should be able to figure
+this out already, know it ahead of time.
+
+229
+00:12:34,540 --> 00:12:36,070
+Um, if you're not comfortable
+with this. And then again,
+
+230
+00:12:36,070 --> 00:12:37,570
+this might not be the
+right course for you,
+
+231
+00:12:38,260 --> 00:12:41,620
+I'll say also to is that every project
+is going to build on the previous one,
+
+232
+00:12:41,860 --> 00:12:42,040
+right?
+
+233
+00:12:42,040 --> 00:12:44,920
+So the first one is the buffer pool
+manager and the second one is the indexes.
+
+234
+00:12:45,100 --> 00:12:47,320
+You can't build your index unless
+you have the buffer manager.
+
+235
+00:12:47,650 --> 00:12:50,200
+So it's really important that you meet
+all these deadlines and you're always
+
+236
+00:12:50,200 --> 00:12:53,800
+keeping up with the coursework. And
+if you have problems with that, uh,
+
+237
+00:12:53,830 --> 00:12:54,850
+talk to me as soon as possible.
+
+238
+00:12:54,850 --> 00:12:56,410
+And that way we can figure
+out what the right thing is.
+
+239
+00:12:59,200 --> 00:13:02,470
+The late policy is that, uh,
+for both homeworks and projects,
+
+240
+00:13:02,470 --> 00:13:05,800
+you're allowed a total
+of four slip days, right?
+
+241
+00:13:05,800 --> 00:13:09,370
+So the deadline will be always at midnight
+for a project or homework and then
+
+242
+00:13:09,500 --> 00:13:11,890
+any, any one minute
+over that deadline, uh,
+
+243
+00:13:11,930 --> 00:13:15,370
+is considered late up for
+a 24 hour period. And then
+you're allowed to be late,
+
+244
+00:13:15,420 --> 00:13:19,540
+uh, at least four days throughout the
+entire semester. Right? So as for, in,
+
+245
+00:13:19,630 --> 00:13:23,320
+in for both homeworks and projects,
+not for, for each category.
+
+246
+00:13:24,940 --> 00:13:27,310
+Right. And then when you, when you submit
+it, please just mark down, you know,
+
+247
+00:13:27,310 --> 00:13:29,640
+how many, how many days you're
+late and how many days you are,
+
+248
+00:13:29,860 --> 00:13:32,560
+late days you have, you
+think you have left, right.
+
+249
+00:13:32,560 --> 00:13:34,900
+That way you sort of do a self audit
+to know where you're at throughout the
+
+250
+00:13:34,900 --> 00:13:39,490
+semester. And again, this
+is Carnegie Mellon, right?
+
+251
+00:13:39,550 --> 00:13:43,600
+I shouldn't have to say this, but I have
+two, uh, all the homeworks and product,
+
+252
+00:13:43,600 --> 00:13:47,110
+it should be done on by yourself.
+They are not group assignments, right?
+
+253
+00:13:47,110 --> 00:13:50,350
+It's not four 40. We have a partner.
+Everything should be done individually.
+
+254
+00:13:50,630 --> 00:13:54,370
+All right? I need, you can't copy source
+code from other people in the class.
+
+255
+00:13:54,610 --> 00:13:56,530
+You can't copy the source
+code from the Internet.
+
+256
+00:13:56,800 --> 00:13:58,480
+Now some people took our
+source code from last year.
+
+257
+00:13:58,480 --> 00:14:02,680
+They weren't seeing your students. It's
+on Github. I seen her code. It's crap.
+
+258
+00:14:02,710 --> 00:14:04,360
+You don't want it. Uh,
+
+259
+00:14:04,870 --> 00:14:07,960
+and it actually won't work this year
+cause we're going to switch some things up
+
+260
+00:14:07,960 --> 00:14:11,830
+cause we're going to switch from SQL
+lite to postgres. Um, so, but again,
+
+261
+00:14:11,830 --> 00:14:13,540
+bottom line is just don't
+copy from other people,
+
+262
+00:14:13,540 --> 00:14:18,280
+don't copy from things that you
+didn't write. Right. And then if I,
+
+263
+00:14:18,340 --> 00:14:22,390
+we find it, uh, when we run it
+through a auto lab, uh, you know,
+
+264
+00:14:22,450 --> 00:14:25,420
+if it finds that you copy code and
+then we have to report you. Okay.
+
+265
+00:14:27,040 --> 00:14:31,810
+All right. The last thing I'll say
+also too is that going beyond the,
+
+266
+00:14:31,870 --> 00:14:33,680
+the material that we're
+going to talk about today,
+
+267
+00:14:33,750 --> 00:14:36,310
+if you want to get more involved with, uh,
+
+268
+00:14:36,730 --> 00:14:38,590
+of database research
+here at Carnegie Mellon,
+
+269
+00:14:38,790 --> 00:14:41,030
+just learn about more
+databases in general. Uh,
+
+270
+00:14:41,030 --> 00:14:45,940
+there's three opportunities to do this.
+Um, again, I announced this on Piazza.
+
+271
+00:14:46,510 --> 00:14:51,510
+The first is that the CMU
+database research group
+meets on Mondays at four 30,
+
+272
+00:14:51,920 --> 00:14:56,360
+right? This is the sort of casual, uh,
+setting where we have researchers, uh,
+
+273
+00:14:56,360 --> 00:14:59,000
+my students and sort of
+sometimes outside, uh,
+
+274
+00:14:59,030 --> 00:15:03,320
+people come talk about this kind of
+stuff they're doing in databases. Um,
+
+275
+00:15:03,500 --> 00:15:05,900
+if you want to get involved on the
+development side of the data system,
+
+276
+00:15:05,900 --> 00:15:08,630
+we're actually doing a brand new database
+system here at Carnegie Mellon from
+
+277
+00:15:08,630 --> 00:15:11,660
+scratch called Peloton. Uh,
+
+278
+00:15:11,960 --> 00:15:14,180
+all my students are working on this.
+
+279
+00:15:14,330 --> 00:15:18,980
+So we have our developer meetings
+on Tuesdays at 12:00 PM in, uh,
+
+280
+00:15:19,060 --> 00:15:23,450
+in gates, Gates Hall.
+Okay. Tillman, um, if you,
+
+281
+00:15:23,840 --> 00:15:27,500
+if you want to take the advanced
+class in the spring, uh, it's all,
+
+282
+00:15:27,500 --> 00:15:28,930
+it's all based on the system or grant.
+
+283
+00:15:28,940 --> 00:15:32,570
+If you just wanna get your hands
+dirty on sort of what I call a sort of
+
+284
+00:15:32,660 --> 00:15:35,930
+commercial grade database system,
+although we're not there yet, uh,
+
+285
+00:15:36,230 --> 00:15:39,140
+then you can get involved
+in this project here. Right?
+
+286
+00:15:39,200 --> 00:15:41,720
+And if you're in some master's
+programs, you have to do capstones.
+
+287
+00:15:41,720 --> 00:15:43,940
+If you want to actually do a
+capstan with me a year from now,
+
+288
+00:15:44,180 --> 00:15:47,120
+it'll be based on the system. So you
+want to get started as soon as possible.
+
+289
+00:15:47,630 --> 00:15:50,210
+What also say too is that,
+again, not to toot my own horn,
+
+290
+00:15:50,210 --> 00:15:54,950
+but all the students that come work
+with me on this project have more job to
+
+291
+00:15:54,950 --> 00:15:56,540
+turn down than they know
+what to deal with, right?
+
+292
+00:15:56,540 --> 00:15:59,050
+Cause all of the data is companies,
+my friends at David's companies are,
+
+293
+00:15:59,130 --> 00:16:02,330
+are emailing me, asking more students
+that come out and come out of our group,
+
+294
+00:16:02,780 --> 00:16:05,240
+right? Because they can't
+hire people fast enough.
+
+295
+00:16:05,780 --> 00:16:07,970
+Now the current name of
+the project is Peloton.
+
+296
+00:16:08,360 --> 00:16:09,820
+We're going to have to
+change the name, uh,
+
+297
+00:16:09,830 --> 00:16:13,420
+this semester because it's assholes
+with the exercise bike on, on TV. Uh,
+
+298
+00:16:13,550 --> 00:16:14,660
+we don't know if we're gonna call it yet,
+
+299
+00:16:14,960 --> 00:16:17,750
+but that's the current
+name now and also say too,
+
+300
+00:16:17,750 --> 00:16:20,270
+is we spent the summer actually rewriting
+a lot of the storage engine from
+
+301
+00:16:20,270 --> 00:16:23,890
+scratch and now we're gonna start bringing
+in the pieces of the old code into
+
+302
+00:16:23,900 --> 00:16:24,950
+our new repository.
+
+303
+00:16:25,220 --> 00:16:28,190
+So it's a good opportunity to get started
+early on this and sort of understand
+
+304
+00:16:28,220 --> 00:16:31,530
+how all the different pieces work
+together. And again, I promise you,
+
+305
+00:16:31,530 --> 00:16:34,100
+you will have no problem
+finding a job if you, uh,
+
+306
+00:16:34,490 --> 00:16:35,930
+if you get involved in database systems.
+
+307
+00:16:36,440 --> 00:16:39,970
+And the last one also to announce is
+that I am running a seminar series, uh,
+
+308
+00:16:39,970 --> 00:16:44,840
+this, this semester that'll be on
+Thursdays, but not every Thursday, uh,
+
+309
+00:16:44,840 --> 00:16:47,340
+in, in the CIC building. Um,
+
+310
+00:16:47,350 --> 00:16:51,020
+and so will I do every fall semester is
+I have a seminar series on sort of one
+
+311
+00:16:51,020 --> 00:16:53,510
+particular theme or category of databases.
+
+312
+00:16:54,110 --> 00:16:56,690
+So this year ever doing
+hardware accelerated databases.
+
+313
+00:16:57,050 --> 00:16:58,640
+So the thing of like of database system,
+
+314
+00:16:58,640 --> 00:17:01,340
+that set of running everything
+on the g on the CPU,
+
+315
+00:17:01,490 --> 00:17:04,220
+they can run it on the GPU
+or other exotic hardware.
+
+316
+00:17:04,700 --> 00:17:06,960
+So the first speaker will be, uh,
+
+317
+00:17:07,040 --> 00:17:11,000
+next week I'm coming from a
+Connectica, which is like, again,
+
+318
+00:17:11,030 --> 00:17:14,000
+a GPU based database.
+Everything will be on youtube,
+
+319
+00:17:14,000 --> 00:17:15,650
+but if you want to come get pizza and,
+
+320
+00:17:15,890 --> 00:17:18,410
+and sort of meat meat and talked
+about what these guys are doing,
+
+321
+00:17:18,690 --> 00:17:20,630
+then I encourage you to do that. Okay.
+
+322
+00:17:21,510 --> 00:17:22,343
+[inaudible]
+
+323
+00:17:22,390 --> 00:17:24,550
+any questions about the course?
+So what's expected to you?
+
+324
+00:17:27,760 --> 00:17:28,593
+Yes,
+
+325
+00:17:30,630 --> 00:17:34,090
+he's question is is will the slide deck
+be uploaded online? Which slide deck?
+
+326
+00:17:34,090 --> 00:17:38,590
+These are mine. Everything will be on
+youtube. Everything will be online,
+
+327
+00:17:39,250 --> 00:17:42,890
+right? But if the DYI DIY, DIY,
+
+328
+00:17:43,160 --> 00:17:46,300
+DIY operation. So if it doesn't
+work, it doesn't work. All right?
+
+329
+00:17:46,330 --> 00:17:50,820
+But this the slide to be
+on. Any other questions?
+
+330
+00:17:55,020 --> 00:17:57,870
+Let's jump into databases.
+
+331
+00:17:58,860 --> 00:18:02,210
+My second most favorite
+thing in my life can,
+
+332
+00:18:02,740 --> 00:18:05,280
+I want to give you a good
+example of a database
+
+333
+00:18:08,450 --> 00:18:10,690
+was that she's SQL lite.
+
+334
+00:18:13,230 --> 00:18:17,560
+Now he says Mommy to be no
+
+335
+00:18:20,540 --> 00:18:25,510
+red shift. No, go for it.
+
+336
+00:18:28,680 --> 00:18:32,370
+There you go. Students of the class,
+right? So she said sequel bite.
+
+337
+00:18:32,370 --> 00:18:36,510
+He said Mongo DB. He said Russia.
+Those are database management systems.
+
+338
+00:18:36,900 --> 00:18:39,900
+He said the students in the class,
+that is a database. Correct?
+
+339
+00:18:40,380 --> 00:18:45,380
+So a database is an organized collection
+of interrelated data that it's going to
+
+340
+00:18:46,470 --> 00:18:49,830
+model some aspect of the real world. So
+here's the example, procreate, right?
+
+341
+00:18:49,830 --> 00:18:53,910
+A database could be the list of students
+that are enrolled in this class right
+
+342
+00:18:54,540 --> 00:18:56,250
+now you need software
+to actually manage that.
+
+343
+00:18:56,250 --> 00:19:00,180
+And that's what the data is [inaudible]
+system is, right, or Dbms, right?
+
+344
+00:19:00,750 --> 00:19:04,440
+So the reason why I think
+this course is important, um,
+
+345
+00:19:04,530 --> 00:19:05,640
+obviously because I'm biased,
+
+346
+00:19:05,640 --> 00:19:10,640
+but the databases that are going to be
+the sort of core component of almost
+
+347
+00:19:11,160 --> 00:19:15,750
+every single aspect of technology or
+computer applications that exist in the
+
+348
+00:19:15,750 --> 00:19:20,250
+world, I guarantee you that even if
+you don't go into the computer field,
+
+349
+00:19:20,400 --> 00:19:22,650
+if you go to any field
+that's related to technology,
+
+350
+00:19:22,800 --> 00:19:25,200
+you will come across databases
+throughout your life, right?
+
+351
+00:19:25,200 --> 00:19:28,470
+Every single website you can think of
+is that's doing something meaningful is
+
+352
+00:19:28,470 --> 00:19:30,660
+going to be backed by a database, right?
+
+353
+00:19:30,660 --> 00:19:34,860
+Every single major computer application
+is going to be backed by a database at
+
+354
+00:19:34,860 --> 00:19:35,693
+the end.
+
+355
+00:19:36,180 --> 00:19:40,320
+And then you need a database minute system
+to actually manage that software and
+
+356
+00:19:40,320 --> 00:19:43,080
+provide you some nights guarantees that
+you don't want to have to end up writing
+
+357
+00:19:43,080 --> 00:19:43,913
+yourself.
+
+358
+00:19:45,480 --> 00:19:49,830
+So let's use this simple example of a
+database and then we'll see actually how
+
+359
+00:19:49,830 --> 00:19:52,440
+we could actually maybe manage this
+ourselves or manage this with software.
+
+360
+00:19:53,370 --> 00:19:56,950
+So let's say that we want to create
+a database that models a, you know,
+
+361
+00:19:57,030 --> 00:20:01,250
+digital music store or something
+like Spotify, right? All right?
+
+362
+00:20:01,700 --> 00:20:05,880
+In our database we want to keep track
+of the artists and the albums that they
+
+363
+00:20:05,880 --> 00:20:09,030
+put out, right? So what do
+we need to store, right?
+
+364
+00:20:09,030 --> 00:20:12,450
+We have information about the artists
+and then we're going to have information
+
+365
+00:20:12,450 --> 00:20:16,770
+about the albums that there's
+artists end up releasing. All right?
+
+366
+00:20:17,400 --> 00:20:20,730
+So the easiest way,
+
+367
+00:20:20,970 --> 00:20:24,490
+the most trivial way to actually implement
+something like this is you use what I
+
+368
+00:20:24,490 --> 00:20:25,440
+call flat files.
+
+369
+00:20:26,790 --> 00:20:30,540
+So basically you have a text file
+that it's using the CSV format, comma,
+
+370
+00:20:30,540 --> 00:20:34,170
+separated values, right? And you
+have one fall for artists, one fall,
+
+371
+00:20:34,180 --> 00:20:35,250
+four for albums,
+
+372
+00:20:35,580 --> 00:20:40,580
+and every single line in in the file
+is going to be one entry or one,
+
+373
+00:20:40,860 --> 00:20:43,440
+you know, one album or one artist, right?
+
+374
+00:20:44,400 --> 00:20:48,400
+So this is the most primitive sort
+of database you could actually build,
+
+375
+00:20:49,120 --> 00:20:49,953
+right?
+
+376
+00:20:50,380 --> 00:20:53,650
+And what's going to happen is in order
+to actually to operate on it in our
+
+377
+00:20:53,650 --> 00:20:55,630
+application code, we're in epic.
+
+378
+00:20:55,690 --> 00:20:58,370
+We're going to have to write our own
+code to actually manage these files and
+
+379
+00:20:58,370 --> 00:21:02,260
+themselves. So if you want to do a
+lookup to try to find a particular entry,
+
+380
+00:21:02,260 --> 00:21:04,690
+we would have to open up
+the file, loop through it,
+
+381
+00:21:04,740 --> 00:21:08,020
+and look at every single line parts, the
+parts, the commas, fine work, you know,
+
+382
+00:21:08,070 --> 00:21:12,940
+the, the, the name of the artist is and
+extract the one that we actually want.
+
+383
+00:21:14,210 --> 00:21:18,190
+So let's see what this will look like.
+All right, so again, say I have my,
+
+384
+00:21:18,190 --> 00:21:22,480
+I have two files, one for artists,
+one for albums. So in the, the,
+
+385
+00:21:22,530 --> 00:21:24,610
+the text above the file, it says artists.
+
+386
+00:21:24,640 --> 00:21:27,610
+And then in parentheses I have the
+attributes that they're storing.
+
+387
+00:21:27,610 --> 00:21:30,250
+So the artists can have a name
+a year in a country, right?
+
+388
+00:21:30,250 --> 00:21:35,020
+And the album can have the named artists
+and in the year, right? Pretty simple.
+
+389
+00:21:35,710 --> 00:21:39,460
+And then again, the, each attribute on
+a line is gonna be separated by Commas.
+
+390
+00:21:39,490 --> 00:21:42,370
+That's how we're going to note the
+different fields or different attributes.
+
+391
+00:21:43,540 --> 00:21:48,250
+So let's say I want to write a simple
+query that gets the year that ice key went
+
+392
+00:21:48,250 --> 00:21:52,330
+solo, right? Ice Cube was an NWA, right?
+They were screwing them over for money.
+
+393
+00:21:52,330 --> 00:21:55,300
+So then he broke out and
+did a solo career. Right.
+
+394
+00:21:55,300 --> 00:21:57,650
+So the way we would do
+this is that we use,
+
+395
+00:21:57,650 --> 00:22:02,260
+right sort of python code like this that
+again just iterates every single line
+
+396
+00:22:02,680 --> 00:22:06,850
+checks to see whether a tr or each
+line split up the comments to get I,
+
+397
+00:22:06,880 --> 00:22:11,860
+I record and then jump to the first
+asset in that record array and the check,
+
+398
+00:22:11,890 --> 00:22:14,410
+which we now know is the name to check
+to see whether it matches the thing that
+
+399
+00:22:14,410 --> 00:22:17,020
+we're looking for and we
+find the thing that we want.
+
+400
+00:22:17,110 --> 00:22:21,490
+And we then just print out the the
+year field and after casting it to an
+
+401
+00:22:21,490 --> 00:22:24,130
+integer, pretty simple. Right.
+
+402
+00:22:26,140 --> 00:22:27,190
+What are some problems with this?
+
+403
+00:22:31,240 --> 00:22:31,790
+Yes.
+
+404
+00:22:31,790 --> 00:22:36,620
+We're not. No. And uh, the artists
+are arranged chronologically,
+
+405
+00:22:36,650 --> 00:22:38,960
+so you might get a year
+that he wants a little bit,
+
+406
+00:22:38,960 --> 00:22:41,300
+not the year that we want to
+land. So hold on actually.
+
+407
+00:22:41,470 --> 00:22:45,490
+So he said that we don't know whether
+the sort of the lines are the columns,
+
+408
+00:22:46,700 --> 00:22:48,640
+like we don't know that.
+
+409
+00:22:48,770 --> 00:22:52,110
+Yeah. First thing in appearance. All
+right. It's going to be around. Yes.
+
+410
+00:22:53,660 --> 00:22:56,990
+You said that we don't know whether the
+first thing that appears for ice cube is
+
+411
+00:22:56,990 --> 00:23:01,820
+going to be the year that
+actually did, he went solo. Right?
+
+412
+00:23:02,050 --> 00:23:06,470
+Okay. And for this we can assume that
+ice cube, oh, Peter once, yeah. Yes.
+
+413
+00:23:07,850 --> 00:23:12,190
+It's what? Right. So you said it,
+
+414
+00:23:12,190 --> 00:23:15,650
+it's costly. Meaning like my
+example here is three lines.
+
+415
+00:23:16,190 --> 00:23:19,760
+Even 10,000 lines is
+not gonna be a big deal.
+
+416
+00:23:20,150 --> 00:23:23,210
+Think 10 billion, right? Some, you know,
+
+417
+00:23:23,390 --> 00:23:25,730
+there's databases that big
+like the Walmart database,
+
+418
+00:23:25,970 --> 00:23:28,760
+it's every single item that anyone's
+ever bought at a Walmart, right?
+
+419
+00:23:28,760 --> 00:23:32,300
+It's gonna be billions, right? I think so.
+
+420
+00:23:32,300 --> 00:23:35,510
+I think we're all in agreement that
+it sucks. Right? It's a bad idea.
+
+421
+00:23:36,050 --> 00:23:37,490
+Let's go a bit more
+detail. What's going on.
+
+422
+00:23:38,690 --> 00:23:42,020
+So the first part I'm
+going to face is that, uh,
+
+423
+00:23:42,320 --> 00:23:46,600
+how are we going to ensure that
+we always use the same name, uh,
+
+424
+00:23:46,640 --> 00:23:48,860
+for each album entry? Right?
+
+425
+00:23:48,860 --> 00:23:53,860
+So if I see ice cube puts out different
+albums I have in my album a file,
+
+426
+00:23:54,170 --> 00:23:56,390
+right? I'm repeating ice
+cube. Oh, never again.
+
+427
+00:23:56,720 --> 00:23:59,180
+But let's say ice cube changed
+his name for whatever reason.
+
+428
+00:23:59,630 --> 00:24:02,560
+How do we make sure that we update all
+the entries for ice cube so they're
+
+429
+00:24:02,570 --> 00:24:03,403
+always the same?
+
+430
+00:24:05,780 --> 00:24:10,780
+Next problem is that what happens if
+someone comes along and puts in a,
+
+431
+00:24:11,200 --> 00:24:14,790
+you know, changes an album year
+and puts in a funky string that,
+
+432
+00:24:14,820 --> 00:24:19,280
+that that's not a an actual integer,
+right? Again, these are just text files.
+
+433
+00:24:19,280 --> 00:24:24,020
+I can open up my favorite editor and muck
+around them as much as I want and then
+
+434
+00:24:24,020 --> 00:24:26,840
+now my program that's actually going to
+just parse them and try to figure out
+
+435
+00:24:26,840 --> 00:24:28,700
+what you know in interpret
+meaning from them.
+
+436
+00:24:29,030 --> 00:24:32,480
+It's going to come across data that it
+doesn't expect to actually see, so what,
+
+437
+00:24:32,480 --> 00:24:35,570
+what, what should actually happen and
+there's no way we can prevent that because
+
+438
+00:24:35,570 --> 00:24:38,540
+again, they're just text files sitting
+in the file system. Anybody can,
+
+439
+00:24:38,570 --> 00:24:41,300
+anybody can open up, open
+them up and change them.
+
+440
+00:24:43,430 --> 00:24:46,310
+The next problem is that how are we
+going to deal with a case where we have
+
+441
+00:24:46,340 --> 00:24:49,760
+albums with multiple artists, right?
+
+442
+00:24:49,760 --> 00:24:52,340
+If you have a mix tape that gets dropped
+and there's bunch of artists that are
+
+443
+00:24:52,340 --> 00:24:56,870
+on there together, how do I actually
+model that in my flat files? Right?
+
+444
+00:24:56,870 --> 00:24:59,030
+I was assuming that there was
+only one artist at a time,
+
+445
+00:24:59,520 --> 00:25:00,660
+but now you've got to do something scary.
+
+446
+00:25:00,680 --> 00:25:05,210
+Like maybe I'll take my artist's field
+and I'll make an internal commerce
+
+447
+00:25:05,210 --> 00:25:10,100
+separated list at t to note the,
+uh, multiple artists around that.
+
+448
+00:25:10,130 --> 00:25:12,530
+But that's kind of weird now and I
+have to change my application code to
+
+449
+00:25:12,530 --> 00:25:13,363
+actually deal with that.
+
+450
+00:25:15,650 --> 00:25:19,760
+Then we actually have now the code to
+actually open up these files and find the
+
+451
+00:25:19,760 --> 00:25:21,920
+data that would, that we want. Right?
+
+452
+00:25:21,920 --> 00:25:24,110
+So the first problem is how do
+you define a particular record?
+
+453
+00:25:24,620 --> 00:25:28,370
+So she pointed out that in my
+simple example here of three lines,
+
+454
+00:25:28,700 --> 00:25:32,000
+that's not a big deal. Then she said
+maybe 10,000 lines would be a problem.
+
+455
+00:25:32,060 --> 00:25:34,940
+That's not a big deal either. It's when
+you actually get into the billions.
+
+456
+00:25:34,940 --> 00:25:37,510
+I really large uh, uh,
+
+457
+00:25:37,520 --> 00:25:41,990
+datasets then open up the file every
+single time you run a query and scanning
+
+458
+00:25:41,990 --> 00:25:45,050
+through every single entry is
+going to be really slow. Right.
+
+459
+00:25:45,050 --> 00:25:46,820
+Just to find one record, right.
+
+460
+00:25:46,820 --> 00:25:49,610
+Maybe we look out and the first one
+is the one we're actually looking for.
+
+461
+00:25:49,790 --> 00:25:52,850
+Worst case scenario is the last one right
+
+462
+00:25:54,550 --> 00:25:58,550
+now. Now I'll say also too is that
+maybe for our first implementation,
+
+463
+00:25:58,780 --> 00:26:00,230
+our first application we built,
+
+464
+00:26:00,530 --> 00:26:03,350
+we were running like a website
+that was using these files,
+
+465
+00:26:03,350 --> 00:26:06,830
+but now we want to have like a sort
+of a separate service or a desktop
+
+466
+00:26:06,830 --> 00:26:08,570
+application and actually use these files.
+
+467
+00:26:09,110 --> 00:26:12,620
+Right now we have to rewrite all the
+code we had in the first application to
+
+468
+00:26:12,620 --> 00:26:15,320
+open up the files and parse them
+and get out the data that we want.
+
+469
+00:26:15,500 --> 00:26:18,770
+We have to duplicate that in our,
+in our second application and so on.
+
+470
+00:26:19,460 --> 00:26:21,920
+Right now we've got to make sure that
+they're always in sync as well. Right.
+
+471
+00:26:21,920 --> 00:26:25,250
+If we change any aspect of the files
+and make sure we have to change both
+
+472
+00:26:25,250 --> 00:26:29,750
+applications. The last one
+is that what if we have,
+
+473
+00:26:30,170 --> 00:26:34,400
+uh, you know, two separate applications
+or two processes or two threads,
+
+474
+00:26:34,910 --> 00:26:39,410
+both trying to update the same file
+at the same time? What's gonna Happen?
+
+475
+00:26:40,550 --> 00:26:44,310
+Right? Well, we just let the
+operating system manage this for us.
+
+476
+00:26:44,340 --> 00:26:46,230
+Then it's going to be
+the last provider, right?
+
+477
+00:26:46,230 --> 00:26:49,530
+So the first guy could open the
+file, second guy could open the file.
+
+478
+00:26:50,070 --> 00:26:52,620
+The first guy does the right,
+the second guy then does a right.
+
+479
+00:26:52,680 --> 00:26:55,710
+It's going to clobber the first guys,
+right? So we ended up losing data,
+
+480
+00:26:58,020 --> 00:26:58,280
+right?
+
+481
+00:26:58,280 --> 00:27:01,200
+The last problem now we got to deal with
+is how to make sure that our data is
+
+482
+00:27:01,200 --> 00:27:06,090
+safe, right? It's not cool that
+your bank loses your money, right?
+
+483
+00:27:06,090 --> 00:27:10,440
+We don't want to lose any data. So
+how do we actually ensure that, well,
+
+484
+00:27:10,710 --> 00:27:11,580
+if we have these, you know,
+
+485
+00:27:11,580 --> 00:27:14,880
+our simple python code to open up
+these files and parse them and we start
+
+486
+00:27:14,910 --> 00:27:15,540
+updating things,
+
+487
+00:27:15,540 --> 00:27:19,770
+what happens when the machine crashes
+or the application crashes while we're
+
+488
+00:27:19,770 --> 00:27:22,890
+doing a right? Right? Worst case scenario,
+
+489
+00:27:22,890 --> 00:27:25,920
+we just lost whatever the last
+thing that we wrote, right?
+
+490
+00:27:25,950 --> 00:27:29,300
+Can even worse thing would be actually
+the file gets corrupted and we lose all
+
+491
+00:27:29,320 --> 00:27:30,153
+our data.
+
+492
+00:27:31,260 --> 00:27:34,170
+So we need an application to make
+sure that that we don't lose anything.
+
+493
+00:27:35,400 --> 00:27:38,520
+But now let's say that we wanna make
+sure that our database is always
+
+494
+00:27:38,520 --> 00:27:41,490
+accessible, right? If you have a
+website you never wanted to go down,
+
+495
+00:27:41,790 --> 00:27:43,020
+so no always need to be up.
+
+496
+00:27:43,410 --> 00:27:47,940
+So what you want to do is maybe replicated
+across multiple machines so that if
+
+497
+00:27:47,940 --> 00:27:51,000
+one machine goes down, the second
+one can, can keep on running still.
+
+498
+00:27:51,000 --> 00:27:53,520
+And it's still service
+requests. But now if I,
+
+499
+00:27:53,570 --> 00:27:56,760
+if I have two machines updating
+the same data set the same time,
+
+500
+00:27:57,060 --> 00:27:58,830
+how do I make sure those
+things are in sync?
+
+501
+00:28:01,740 --> 00:28:06,660
+So the, the answer to this is a
+database management system, right?
+
+502
+00:28:06,830 --> 00:28:07,880
+I dated has been a system is,
+
+503
+00:28:07,880 --> 00:28:12,300
+is software that's specifically designed
+to store and analyze information in a
+
+504
+00:28:12,300 --> 00:28:14,740
+database, right? And there's
+different kinds of data.
+
+505
+00:28:14,810 --> 00:28:18,150
+Data is managed systems are different
+systems that do serve different types of
+
+506
+00:28:18,150 --> 00:28:21,540
+applications scenarios. But
+at a high level, this is all,
+
+507
+00:28:21,570 --> 00:28:22,680
+this is what they're going to do.
+
+508
+00:28:23,910 --> 00:28:27,780
+So the idea to think way to think about
+this is instead of writing all that code
+
+509
+00:28:27,900 --> 00:28:31,260
+to open up those files and manage
+them for every single time I write an
+
+510
+00:28:31,260 --> 00:28:35,070
+application on my database, a database
+admin assistant will do this for me,
+
+511
+00:28:36,480 --> 00:28:37,313
+right?
+
+512
+00:28:37,590 --> 00:28:40,610
+And that way I can worry about writing
+all the business logic or the other
+
+513
+00:28:40,680 --> 00:28:43,950
+complicated code that I want to have in
+my application that actually serves the
+
+514
+00:28:43,950 --> 00:28:46,380
+purpose of the business or whatever
+it is that I'm trying to accomplish.
+
+515
+00:28:46,800 --> 00:28:50,580
+And I leave the data system to manage
+all the durability and guarantees that I
+
+516
+00:28:50,580 --> 00:28:52,050
+would want and from my data.
+
+517
+00:28:53,340 --> 00:28:56,010
+And the reason why I think I again
+think about why this is so important.
+
+518
+00:28:56,490 --> 00:28:58,800
+Think about all the courses
+that seem new offers, right?
+
+519
+00:28:58,800 --> 00:29:02,220
+Or as far as in the CS
+Department or ses, right?
+
+520
+00:29:02,280 --> 00:29:05,520
+There's a course just for this,
+you know, database systems.
+
+521
+00:29:05,520 --> 00:29:08,430
+Actually there's two courses cause I
+have two of them, right? There's no,
+
+522
+00:29:08,430 --> 00:29:11,520
+of course you had to write
+out a web browser, right?
+
+523
+00:29:12,330 --> 00:29:13,920
+There's of course that teach
+operating systems, right?
+
+524
+00:29:13,920 --> 00:29:18,470
+These are core important core components
+you need to have for a, you know,
+
+525
+00:29:18,480 --> 00:29:22,140
+in modern applications. That's why
+I think this is where starting.
+
+526
+00:29:23,850 --> 00:29:26,960
+So now it's sort of taken for granted
+in today's time that we have all these
+
+527
+00:29:27,090 --> 00:29:30,750
+database options available to us. Uh,
+but didn't always use to be the case.
+
+528
+00:29:30,960 --> 00:29:33,510
+Right? Again, when I asked you guys
+name of database, I heard red ship,
+
+529
+00:29:33,510 --> 00:29:34,170
+I heard mango,
+
+530
+00:29:34,170 --> 00:29:39,150
+I heard a SQL lite by these things that
+these things exist now and they solve a
+
+531
+00:29:39,150 --> 00:29:41,350
+lot of the problems that we
+want to have for, for databases.
+
+532
+00:29:41,620 --> 00:29:43,930
+But back in the old days, it
+certainly wasn't like this at all.
+
+533
+00:29:45,160 --> 00:29:48,520
+So if you go back to
+like the 1960s, 1970s,
+
+534
+00:29:48,520 --> 00:29:51,820
+when the first database systems
+sort of came online, um,
+
+535
+00:29:52,330 --> 00:29:56,290
+these things are actually really
+difficult to use and maintain, right?
+
+536
+00:29:56,890 --> 00:29:59,530
+And part of the reason is because there
+was this tight coupling between the
+
+537
+00:29:59,530 --> 00:30:03,010
+logical layer of the database
+and the physical layer.
+
+538
+00:30:03,340 --> 00:30:07,890
+So the logical layer would be what I
+was showing before when I describe the,
+
+539
+00:30:07,900 --> 00:30:11,650
+you know, my, the, the music store and
+the logical layer would be, here's,
+
+540
+00:30:11,710 --> 00:30:14,610
+I have an artist and it has artists, has
+these attributes and I have an album,
+
+541
+00:30:14,610 --> 00:30:15,820
+an album has these attributes.
+
+542
+00:30:16,450 --> 00:30:19,900
+The physical layer would be how that
+data's actually being represented and
+
+543
+00:30:19,900 --> 00:30:24,280
+stored in bites on in
+memory and on, on the,
+
+544
+00:30:24,370 --> 00:30:28,930
+on the hard drive. Right?
+So back then in the 1960s,
+
+545
+00:30:28,930 --> 00:30:30,910
+1970s and these first database systems,
+
+546
+00:30:31,780 --> 00:30:36,010
+you would actually define exactly the
+physical structure of the database in your
+
+547
+00:30:36,010 --> 00:30:38,080
+application code, right?
+
+548
+00:30:38,080 --> 00:30:41,560
+So the first example of one of the
+earliest databases was this thing called a
+
+549
+00:30:41,560 --> 00:30:45,680
+ims from IBM information management
+system. It's actually, they built the,
+
+550
+00:30:45,680 --> 00:30:49,990
+the this database system, uh, as part
+of the, the, the Apollo Moon mission,
+
+551
+00:30:50,620 --> 00:30:52,570
+right? To keep track of all the
+parts. They were, they were,
+
+552
+00:30:52,660 --> 00:30:55,540
+they needed to build the rockets
+for the, the to go up in the space.
+
+553
+00:30:56,350 --> 00:30:59,980
+So back then, the way ims would
+work was you would say are,
+
+554
+00:31:00,040 --> 00:31:03,670
+here's my database and I want to store
+it as a hash table or here's my database
+
+555
+00:31:03,670 --> 00:31:06,320
+and I want to store this as as
+a, as a, as a tree structure.
+
+556
+00:31:06,320 --> 00:31:07,153
+It could be plus three.
+
+557
+00:31:07,960 --> 00:31:11,670
+And then based on what you actually
+defined as the physical data structure for
+
+558
+00:31:11,670 --> 00:31:13,360
+you for your table or your database,
+
+559
+00:31:13,810 --> 00:31:17,080
+that would then expose a certain
+API to you in your application.
+
+560
+00:31:17,650 --> 00:31:19,840
+So if you've got a hash table,
+you could do point queries,
+
+561
+00:31:19,900 --> 00:31:23,140
+do single key lookups. If you
+had a, if I had a tree structure,
+
+562
+00:31:23,320 --> 00:31:26,560
+you can do range scans. All right,
+so the issue was then, now if you,
+
+563
+00:31:26,560 --> 00:31:27,550
+if you later on decided,
+
+564
+00:31:27,580 --> 00:31:29,890
+oh I don't want to hash table
+actually want a tree structure,
+
+565
+00:31:30,310 --> 00:31:34,180
+then you gotta not only dump out the
+database and put it back in as a tree,
+
+566
+00:31:34,450 --> 00:31:37,650
+the need to go back and modify all
+your application to now use the,
+
+567
+00:31:37,650 --> 00:31:40,680
+the tree structure API instead
+of the hash table. Right.
+
+568
+00:31:41,200 --> 00:31:44,770
+So essentially you kind of had to know
+exactly how the data was going to be used
+
+569
+00:31:45,190 --> 00:31:48,370
+before you actually started building
+your application. Right? Which is not,
+
+570
+00:31:48,370 --> 00:31:49,990
+not always the case and not easy to do.
+
+571
+00:31:52,300 --> 00:31:56,860
+So what happened was in at
+IBM, uh, in the late 1960s,
+
+572
+00:31:56,860 --> 00:32:01,190
+early 1970s, uh, there was this
+guy fresh out of Grad school, uh,
+
+573
+00:32:01,370 --> 00:32:06,010
+named Ted Cod. And this is, this is IBM
+research in New York and Watson. Um,
+
+574
+00:32:06,340 --> 00:32:10,390
+and he basically went around IBM and
+he saw all these people writing, uh,
+
+575
+00:32:10,450 --> 00:32:10,900
+you know,
+
+576
+00:32:10,900 --> 00:32:14,680
+these programmers rewriting the database
+applications over and over again
+
+577
+00:32:15,370 --> 00:32:17,620
+because they had to deal with
+the case of, of, you know, the,
+
+578
+00:32:17,620 --> 00:32:20,650
+the physical data structure change or
+the logical structure change and didn't
+
+579
+00:32:20,780 --> 00:32:24,250
+rewrite the application from
+scratch. Now, back then again,
+
+580
+00:32:24,250 --> 00:32:28,780
+humans were cheaper than the
+machines. It's the opposite now. So,
+
+581
+00:32:29,070 --> 00:32:31,960
+you know, you just throw more
+money and hire more programmers,
+
+582
+00:32:31,960 --> 00:32:33,580
+but this is not scalable. Right?
+
+583
+00:32:34,510 --> 00:32:38,860
+So he saw this and he saw that this is a
+clear problem and this is because there
+
+584
+00:32:38,860 --> 00:32:41,600
+was a tight coupling between the
+physical layer and the logical layer.
+
+585
+00:32:42,410 --> 00:32:46,250
+So he wrote the seminal paper
+in a tech report in 19, uh,
+
+586
+00:32:46,250 --> 00:32:48,650
+in late 1960s and then
+there was actually the,
+
+587
+00:32:48,650 --> 00:32:53,210
+the full paper in CACM in the 1970s
+and he proposed what was called the
+
+588
+00:32:53,210 --> 00:32:54,050
+relational model
+
+589
+00:32:56,090 --> 00:33:00,350
+and the relational model basically
+has four, three key points.
+
+590
+00:33:01,460 --> 00:33:05,510
+The first is that you're going to store
+your database as these simple data
+
+591
+00:33:05,510 --> 00:33:09,770
+structures, correlations. I,
+this is at a logical level.
+
+592
+00:33:09,770 --> 00:33:11,240
+You're not just defining trees,
+
+593
+00:33:11,240 --> 00:33:15,080
+you're not defining these
+weird hierarchies that
+people were using back then,
+
+594
+00:33:15,310 --> 00:33:17,210
+but you just say, here's
+my, here's my relation,
+
+595
+00:33:17,450 --> 00:33:20,810
+here's the Astros that it has and that's
+the end of it and I would have all the
+
+596
+00:33:20,810 --> 00:33:25,480
+relations as well. Then
+you would have now a, a,
+
+597
+00:33:25,490 --> 00:33:27,120
+you would access your,
+
+598
+00:33:27,170 --> 00:33:31,650
+your relations through a high level of
+language or declarative language, right.
+
+599
+00:33:31,660 --> 00:33:35,810
+This is, this is before SQL, but the,
+it was sort of basically what sequel is,
+
+600
+00:33:35,860 --> 00:33:40,490
+is now I said no longer in the ims
+case. What I would say, all right,
+
+601
+00:33:40,490 --> 00:33:43,700
+I have a tree data structure and here's
+the API for me to make calls to it.
+
+602
+00:33:44,600 --> 00:33:47,690
+He wouldn't do that anymore. You just
+say, here's the query I want to execute.
+
+603
+00:33:47,960 --> 00:33:50,360
+You don't care how the data
+system actually stores it.
+
+604
+00:33:50,750 --> 00:33:53,900
+It'll figure out how to
+do this for you. Right.
+
+605
+00:33:54,710 --> 00:33:57,770
+This is actually pretty
+controversial back then. Right?
+
+606
+00:33:57,950 --> 00:34:01,910
+Back then people were saying there's
+no way a query optimizer and a database
+
+607
+00:34:01,910 --> 00:34:05,150
+system will be able to generate a query
+plan that's as efficient and what a
+
+608
+00:34:05,150 --> 00:34:07,400
+human can code. All right.
+
+609
+00:34:07,400 --> 00:34:11,220
+This is sort of similar to what people
+were saying back then about compilers or
+
+610
+00:34:11,270 --> 00:34:15,530
+there's no way a compiler or c compiler
+could generate machine code that's as
+
+611
+00:34:15,530 --> 00:34:20,150
+efficient as assembly written by a
+human. Right, and for some of the cases,
+
+612
+00:34:20,150 --> 00:34:24,920
+I'm sure that that's true, but most of
+the times nowadays, nowadays it is not.
+
+613
+00:34:25,520 --> 00:34:30,230
+Right. Competitors is actually pretty
+good. So the last piece is the the,
+
+614
+00:34:30,260 --> 00:34:34,730
+what I was saying about before is that
+because now we have this decoupling
+
+615
+00:34:34,730 --> 00:34:36,890
+between the logical layer
+and the physical layer.
+
+616
+00:34:37,580 --> 00:34:41,000
+It's now up to the database man of
+system itself to figure out what the most
+
+617
+00:34:41,000 --> 00:34:45,620
+efficient way to actually store your,
+your, your data, right. For each table,
+
+618
+00:34:45,620 --> 00:34:50,480
+each relation. So no longer did I have
+to say store this table as a tree store,
+
+619
+00:34:50,480 --> 00:34:53,960
+this table as a hash table, I
+would just say, here's my table,
+
+620
+00:34:54,080 --> 00:34:55,220
+here's the extracts that it has.
+
+621
+00:34:55,820 --> 00:34:58,400
+And it was up for the database admin
+assistant to figure it out based on the
+
+622
+00:34:58,400 --> 00:34:59,450
+queries you want to run on it.
+
+623
+00:34:59,810 --> 00:35:03,080
+What was the most efficient way
+to actually store this? Right.
+
+624
+00:35:03,080 --> 00:35:04,010
+And we'll see this later on.
+
+625
+00:35:04,040 --> 00:35:07,820
+There's nothing that says that it
+actually has to be static, right?
+
+626
+00:35:07,820 --> 00:35:11,300
+It could decide a tree structure is
+the right thing now, but based on what,
+
+627
+00:35:11,300 --> 00:35:15,470
+how your applications actually using it
+because switch over to a hash table or
+
+628
+00:35:15,470 --> 00:35:18,830
+some other data structure and that's
+fine because of the first point,
+
+629
+00:35:18,830 --> 00:35:20,810
+because we're writing or the second point,
+
+630
+00:35:20,810 --> 00:35:24,860
+because we're writing our queries in a
+high level language that doesn't have any
+
+631
+00:35:24,860 --> 00:35:27,290
+information about how band
+line data structure is.
+
+632
+00:35:27,680 --> 00:35:32,210
+The Davis system is free to change
+this any way that it wants and use the
+
+633
+00:35:32,210 --> 00:35:33,350
+program and don't, don't care.
+
+634
+00:35:35,450 --> 00:35:40,450
+So the other key thing that sort of cod
+also PR produce is this notion of a data
+
+635
+00:35:40,680 --> 00:35:44,280
+model, right? The data
+model is essentially a,
+
+636
+00:35:44,340 --> 00:35:49,290
+there's a high level concept that is a
+way to describe the collection of the
+
+637
+00:35:49,290 --> 00:35:51,510
+data that you would actually
+store in a database.
+
+638
+00:35:52,050 --> 00:35:53,760
+So the relational model is one example.
+
+639
+00:35:53,790 --> 00:35:56,190
+And the next slide we'll see
+a bunch of other ones, right?
+
+640
+00:35:56,190 --> 00:35:57,750
+He sort of was the first
+person that said, all right,
+
+641
+00:35:57,750 --> 00:36:01,200
+here's what this actually means. Uh,
+you're not just making, you know,
+
+642
+00:36:01,200 --> 00:36:03,330
+you're not just dumping
+data into a database.
+
+643
+00:36:03,630 --> 00:36:07,320
+You're actually can represent it as
+data model and at a more high level, uh,
+
+644
+00:36:07,380 --> 00:36:10,170
+abstraction. And then a Schema is,
+
+645
+00:36:10,770 --> 00:36:12,540
+will be an actual description.
+
+646
+00:36:12,840 --> 00:36:16,170
+All the collection of data for
+is given data model. So again,
+
+647
+00:36:16,170 --> 00:36:18,210
+if you're familiar with SQL, right? SQL,
+
+648
+00:36:18,210 --> 00:36:20,580
+you call create table to
+define a table, right?
+
+649
+00:36:20,610 --> 00:36:25,610
+That's the Schema to represent a piece
+of data or a collection of data within a
+
+650
+00:36:26,100 --> 00:36:30,360
+relational model database. So as I said,
+
+651
+00:36:30,360 --> 00:36:32,400
+there's a bunch of different
+data models that are out there.
+
+652
+00:36:32,640 --> 00:36:35,010
+These are probably the main
+ones that are out there now.
+
+653
+00:36:35,010 --> 00:36:36,540
+There's even more obscure ones.
+
+654
+00:36:36,900 --> 00:36:39,870
+Theoreticians went buck wild on this in
+1980s and there's a bunch of different
+
+655
+00:36:39,870 --> 00:36:40,920
+things, uh,
+
+656
+00:36:40,920 --> 00:36:44,160
+that there are some systems out there
+that actually implemented most of the time
+
+657
+00:36:44,160 --> 00:36:47,460
+you don't need to know, don't
+need to care. Um, so again,
+
+658
+00:36:47,730 --> 00:36:51,210
+most database systems that you
+can think about are using, uh,
+
+659
+00:36:51,210 --> 00:36:54,210
+the relational data model. So the
+three we had listed at the beginning,
+
+660
+00:36:54,360 --> 00:36:56,820
+CQL light red shift and Mongo DB,
+
+661
+00:36:56,920 --> 00:36:59,310
+SQL light and red shift
+and relational databases.
+
+662
+00:36:59,700 --> 00:37:04,080
+Mongo DB is considered a document database
+root, right? Or an object database.
+
+663
+00:37:05,730 --> 00:37:08,670
+Um, there's another class of systems you
+might be familiar with called no SQL.
+
+664
+00:37:09,180 --> 00:37:11,550
+Um, they sort of fall into
+these data models here.
+
+665
+00:37:11,610 --> 00:37:14,160
+Key value graph document
+column family. Again,
+
+666
+00:37:14,160 --> 00:37:18,000
+Mongo is a document database graph
+database would be typical like neo four.
+
+667
+00:37:18,000 --> 00:37:23,000
+J M key value would be like Retis a
+dynamo DB and column family would be um,
+
+668
+00:37:25,960 --> 00:37:29,880
+uh, like h base or a
+big table from Google.
+
+669
+00:37:30,890 --> 00:37:34,140
+A lot of things, a lot of people
+say these systems called no Siegel.
+
+670
+00:37:34,140 --> 00:37:37,670
+A lot of them actually now adding back
+SQL support, right? So you can just,
+
+671
+00:37:37,710 --> 00:37:40,110
+you can run SQL on top of
+these different data models.
+
+672
+00:37:41,970 --> 00:37:44,550
+You're also have array and
+matrix data models, right?
+
+673
+00:37:44,550 --> 00:37:45,960
+So instead of serving things, relations,
+
+674
+00:37:45,970 --> 00:37:49,080
+you sort of things as
+multidimensional arrays. Um,
+
+675
+00:37:49,410 --> 00:37:52,540
+there are a small number of systems
+that actually do this [inaudible] as
+
+676
+00:37:52,620 --> 00:37:53,820
+probably the most famous one.
+
+677
+00:37:54,390 --> 00:37:57,930
+And then the last two are these
+hierarchal and network data model. Uh,
+
+678
+00:37:57,990 --> 00:38:02,550
+so ims is hierarchical. The network data
+model was this other thing, uh, called,
+
+679
+00:38:02,640 --> 00:38:07,230
+uh, IDM. What's a Cota sell model?
+These are obsolete and rare.
+
+680
+00:38:07,770 --> 00:38:10,680
+If you hate yourself and you want to get
+a job in the industry to do maintenance
+
+681
+00:38:10,680 --> 00:38:15,150
+on old code from the 1960s, right? You
+will come across these solid databases.
+
+682
+00:38:15,150 --> 00:38:17,460
+But if you're a new startup, there's
+no way how you would actually use this.
+
+683
+00:38:17,850 --> 00:38:20,670
+Okay. So for this class,
+
+684
+00:38:20,700 --> 00:38:22,800
+we're going to focus mostly
+on the relational data model.
+
+685
+00:38:23,730 --> 00:38:28,590
+And part of the reason is that with the
+exception for the array and matrices,
+
+686
+00:38:29,040 --> 00:38:30,870
+you can represent all of these things,
+
+687
+00:38:30,930 --> 00:38:34,110
+all these other data models and
+the relational model, right?
+
+688
+00:38:34,380 --> 00:38:39,100
+A key value model is that sort of
+relation with you know, two columns,
+
+689
+00:38:39,520 --> 00:38:44,260
+right? Graph databases you can represent
+the relationships is again, just as,
+
+690
+00:38:44,290 --> 00:38:48,940
+as another relation. Um,
+is my opinion that, uh,
+
+691
+00:38:49,000 --> 00:38:53,180
+most of the Times people, what people
+need is a relational data model. Uh,
+
+692
+00:38:53,380 --> 00:38:56,260
+there are obviously some cases where one
+of these more specialized systems might
+
+693
+00:38:56,260 --> 00:38:57,093
+actually be better,
+
+694
+00:38:57,400 --> 00:39:01,420
+but it's more about the API did
+expose to you as the programmer.
+
+695
+00:39:02,130 --> 00:39:06,160
+Uh, and not so much how the
+data is actually stored, right?
+
+696
+00:39:06,280 --> 00:39:11,060
+So in the graph databases, for example,
+they have specialized, uh, you know,
+
+697
+00:39:11,140 --> 00:39:14,750
+function calls and, and
+ways run queries that,
+
+698
+00:39:14,900 --> 00:39:17,890
+that assume you're running on a graph
+model and therefore they can work more
+
+699
+00:39:17,890 --> 00:39:21,540
+efficiently than writing a sequel. But
+again, at the storage level, they're,
+
+700
+00:39:21,540 --> 00:39:24,880
+they're essentially the same. Okay.
+
+701
+00:39:25,090 --> 00:39:27,820
+So the relational data models
+can define three things.
+
+702
+00:39:28,450 --> 00:39:32,680
+So the first is the structure, right?
+And this is essentially a definition of,
+
+703
+00:39:33,100 --> 00:39:36,010
+for each relation, here's the attributes
+that they have and here's the,
+
+704
+00:39:36,010 --> 00:39:38,530
+the main of the values that
+you can actually store in them.
+
+705
+00:39:39,220 --> 00:39:43,660
+So my example earlier when I show the
+artist relation or the artist's table,
+
+706
+00:39:43,900 --> 00:39:47,170
+right? And artist had a name,
+a country and a year, right?
+
+707
+00:39:47,170 --> 00:39:51,520
+The name has to be like a string type
+and the year has to be entered your type
+
+708
+00:39:51,550 --> 00:39:53,650
+right, that you defined
+that in, in the structure.
+
+709
+00:39:55,690 --> 00:40:00,470
+Then you have the integrity, uh,
+definitions. And this is essentially the,
+
+710
+00:40:00,470 --> 00:40:03,370
+the constraints you can impose on the,
+
+711
+00:40:03,970 --> 00:40:07,570
+on the tuples and the values for the
+attributes that have to be satisfied in
+
+712
+00:40:07,570 --> 00:40:11,380
+order for you. A lot of store a
+tuple in the, uh, ashore, a tube in,
+
+713
+00:40:11,390 --> 00:40:15,730
+into that relation. So again, I, my
+structure defined, I have three fields,
+
+714
+00:40:15,730 --> 00:40:20,530
+name, country and, and year. And
+then a integrity constraint could be,
+
+715
+00:40:20,530 --> 00:40:24,070
+I can't store anything unless
+it's an integer for a year, right?
+
+716
+00:40:24,100 --> 00:40:28,420
+Otherwise it's an invalid tool.
+And the last one is defining, uh,
+
+717
+00:40:28,420 --> 00:40:29,710
+the manipulation and constructs.
+
+718
+00:40:29,710 --> 00:40:33,500
+And this is essentially how are we gonna
+actually access and modify the data in
+
+719
+00:40:33,500 --> 00:40:34,333
+interrelation?
+
+720
+00:40:34,720 --> 00:40:36,460
+So this is what we're gonna talk about
+today when we talk about Relational
+
+721
+00:40:36,490 --> 00:40:38,470
+Algebra, right? And SQL,
+
+722
+00:40:38,470 --> 00:40:41,050
+this essentially you define
+your tables and then you just,
+
+723
+00:40:41,100 --> 00:40:43,600
+you write queries that actually
+get the get to the data.
+
+724
+00:40:46,540 --> 00:40:49,300
+So the relational model is the,
+
+725
+00:40:49,300 --> 00:40:52,180
+is based on this notion
+of a relation, right?
+
+726
+00:40:52,310 --> 00:40:56,120
+I say don't think of it as like I'm in
+a relationship with my wife or your your
+
+727
+00:40:56,140 --> 00:40:57,340
+whatever. Right?
+
+728
+00:40:57,520 --> 00:41:01,420
+It's the actual table self in the
+mathematical terms is called a relation.
+
+729
+00:41:02,580 --> 00:41:05,920
+And so our relation is going to be
+an unordered set that contained the
+
+730
+00:41:05,920 --> 00:41:09,880
+relationship attributes that present
+represent different entities in,
+
+731
+00:41:10,000 --> 00:41:12,730
+in that table, in that relation. Right?
+
+732
+00:41:12,730 --> 00:41:17,020
+So the important thing that's going to
+come up throughout the semester is this
+
+733
+00:41:17,020 --> 00:41:20,410
+notion that the relations
+are unordered, right?
+
+734
+00:41:20,410 --> 00:41:22,410
+And this is going to actually
+get this matter from a, from a,
+
+735
+00:41:22,570 --> 00:41:24,070
+from a systems implementation standpoint,
+
+736
+00:41:24,070 --> 00:41:26,830
+because we don't have to
+maintain ordering this is,
+
+737
+00:41:26,830 --> 00:41:30,100
+allows us to do a lot of things more
+efficiently than you would have otherwise.
+
+738
+00:41:30,730 --> 00:41:31,030
+Right?
+
+739
+00:41:31,030 --> 00:41:34,790
+So it also means that we're going to
+end up cases where a query can produce
+
+740
+00:41:34,790 --> 00:41:39,290
+different results that are actually still
+all considered correct because things
+
+741
+00:41:39,290 --> 00:41:41,870
+are on order, right? If
+you care about ordering,
+
+742
+00:41:41,870 --> 00:41:46,180
+you define order by to sort
+things, right? If not, then it's,
+
+743
+00:41:46,340 --> 00:41:48,110
+it can be any random order that it wants.
+
+744
+00:41:49,910 --> 00:41:52,820
+And then with a relationship
+we can have a two pole, right?
+
+745
+00:41:52,850 --> 00:41:55,940
+And that's going to be defined by the
+set of attribute values for any given
+
+746
+00:41:55,940 --> 00:42:00,290
+instance of a, a relationship
+with in, in, in our relation.
+
+747
+00:42:01,310 --> 00:42:04,490
+So under the original description
+of the relational model from,
+
+748
+00:42:04,540 --> 00:42:06,410
+from Ted cod from the 1970s,
+
+749
+00:42:06,800 --> 00:42:11,480
+the values for the attributes in a
+tuple had to be scalar or atomic, right?
+
+750
+00:42:11,480 --> 00:42:12,920
+You mean the, they can't be lists,
+
+751
+00:42:12,920 --> 00:42:17,180
+they can't be sort of nested
+data structures in neuro
+systems that's actually
+
+752
+00:42:17,180 --> 00:42:18,410
+relaxed. You can actually do this,
+
+753
+00:42:18,410 --> 00:42:22,360
+but in the original definition you
+couldn't and they're also going to, uh,
+
+754
+00:42:22,520 --> 00:42:24,860
+have a special bio called
+null that works a lot.
+
+755
+00:42:24,860 --> 00:42:29,860
+Like how Knowles work in C or c plus
+plus by essentially means that the value
+
+756
+00:42:30,250 --> 00:42:34,490
+for particular attribute will be
+undefined, right? This data isn't simply,
+
+757
+00:42:34,490 --> 00:42:38,270
+doesn't know anything about.
+So in our example from before,
+
+758
+00:42:38,270 --> 00:42:42,650
+from artist's name and year, right? This
+is defining the relationship for that,
+
+759
+00:42:42,740 --> 00:42:45,740
+right? It says it looks the same
+thing as, as our flat files,
+
+760
+00:42:46,070 --> 00:42:49,880
+except now that I'm, I'm the,
+the, the data didn't actually,
+
+761
+00:42:49,880 --> 00:42:52,100
+he's maintaining the field
+delimiters in themselves.
+
+762
+00:42:52,370 --> 00:42:57,320
+I no longer have to po parse commas
+to be a bit more mathematical.
+
+763
+00:42:57,610 --> 00:43:00,130
+Uh, we can say that a, uh,
+
+764
+00:43:00,610 --> 00:43:04,640
+a relation that has an attributes
+is called a n Arie relation,
+
+765
+00:43:06,500 --> 00:43:09,410
+right. And area would come up
+later on when we talk about the,
+
+766
+00:43:09,500 --> 00:43:13,220
+the storage models for these things.
+Um, but it is so that you, you know,
+
+767
+00:43:13,220 --> 00:43:17,720
+the term, uh, it means an airy. All right.
+
+768
+00:43:17,720 --> 00:43:21,950
+The other key thing about relational
+models that introduces two types of keys,
+
+769
+00:43:22,640 --> 00:43:25,040
+so primary keys and foreign keys.
+
+770
+00:43:25,790 --> 00:43:30,790
+So a primary key is some set of attributes
+for that relation that will uniquely
+
+771
+00:43:32,510 --> 00:43:36,610
+identify every single Tubal
+or are exactly one tuple.
+
+772
+00:43:37,940 --> 00:43:40,400
+So in this case here, uh,
+
+773
+00:43:40,430 --> 00:43:43,520
+none of these are actually [inaudible]
+the primary key for us because there's
+
+774
+00:43:43,520 --> 00:43:47,060
+nothing really stopping from someone
+else from naming their band ice cube,
+
+775
+00:43:47,510 --> 00:43:51,200
+right? So we can't assume that the
+name is going to be unique, right?
+
+776
+00:43:51,590 --> 00:43:56,030
+So what we can do instead is we can
+introduce a special primary key called the
+
+777
+00:43:56,030 --> 00:43:57,530
+ID, right?
+
+778
+00:43:57,530 --> 00:44:01,360
+And this is just some unique integer to
+represent exactly are the one tool that
+
+779
+00:44:01,360 --> 00:44:02,193
+we want.
+
+780
+00:44:02,930 --> 00:44:06,800
+So what will happen is that if
+you don't define a primary key,
+
+781
+00:44:07,370 --> 00:44:09,560
+some database systems will
+actually generate one for you,
+
+782
+00:44:09,560 --> 00:44:12,530
+but they'll maintain it internally.
+So my Siegel for example,
+
+783
+00:44:12,580 --> 00:44:16,550
+if you don't declare a primary key
+underneath the covers, it uses the row id,
+
+784
+00:44:16,610 --> 00:44:20,090
+which is like basically the block id in
+offset of where it's actually stored on
+
+785
+00:44:20,090 --> 00:44:24,410
+disc. And I use that to represent
+the primary key for you. Um,
+
+786
+00:44:25,300 --> 00:44:27,980
+if you will talk about
+primary key index is later on.
+
+787
+00:44:27,980 --> 00:44:32,250
+But if you create one then as much
+other optimizations can do to find data
+
+788
+00:44:32,250 --> 00:44:33,570
+[inaudible] more quickly
+for doing, you know,
+
+789
+00:44:33,630 --> 00:44:35,130
+slacks and updates and things like that.
+
+790
+00:44:36,540 --> 00:44:39,150
+And then instead of having to
+maintain the, you know, this,
+
+791
+00:44:39,150 --> 00:44:43,170
+this counter for the ID manly in
+your application, a lot of data,
+
+792
+00:44:43,190 --> 00:44:46,320
+data systems also support for audit,
+what to call auto-generated keys.
+
+793
+00:44:46,830 --> 00:44:49,590
+So in the SQL standard, it's
+called sequence. In my SQL,
+
+794
+00:44:49,590 --> 00:44:50,460
+we'll see this over and over again.
+
+795
+00:44:50,460 --> 00:44:52,590
+My SQL likes to do things
+differently for whatever reason,
+
+796
+00:44:52,890 --> 00:44:55,560
+they call them auto increment. And
+basically what happened is now,
+
+797
+00:44:55,590 --> 00:44:57,120
+if I insert a two pole,
+
+798
+00:44:57,240 --> 00:45:00,660
+is a counter to always gets added one
+and creates a new primary entry for me.
+
+799
+00:45:02,760 --> 00:45:06,630
+The other type of key to care about
+are called foreign keys. And this is,
+
+800
+00:45:06,840 --> 00:45:11,260
+this is going to allow us to model
+the relationships of relations, uh,
+
+801
+00:45:11,280 --> 00:45:13,650
+to make sure that we're always
+in sync with each other.
+
+802
+00:45:14,310 --> 00:45:18,240
+So foreign key is going to allow it to
+say that one attribute for one relation
+
+803
+00:45:18,390 --> 00:45:23,190
+has to have a matching value in another
+relation. Remember I said before,
+
+804
+00:45:23,190 --> 00:45:24,270
+the example was how do I,
+
+805
+00:45:24,300 --> 00:45:28,620
+how do I make sure that if I have all
+these albums where ice cube and ice cube
+
+806
+00:45:28,620 --> 00:45:29,520
+changes his name,
+
+807
+00:45:29,520 --> 00:45:34,320
+how do I make sure that they're always
+in sync with each other? Right? Well,
+
+808
+00:45:34,560 --> 00:45:36,390
+foreign keys will solve
+this problem for us.
+
+809
+00:45:37,050 --> 00:45:41,460
+So this is the example we have before.
+Right now we're using, issuing the,
+
+810
+00:45:41,550 --> 00:45:44,670
+the primary key with the
+integer. Uh, as the ID field.
+
+811
+00:45:46,320 --> 00:45:50,970
+But in the case of, uh, using this
+Ms. Campbell, the mixed tape here,
+
+812
+00:45:51,570 --> 00:45:54,900
+say this, I have multiple
+artists here. I said before,
+
+813
+00:45:54,900 --> 00:45:56,700
+the relational model has
+to have scalar values.
+
+814
+00:45:56,700 --> 00:46:01,500
+So I can't have a list of values here. I
+need to have some way to keep track of,
+
+815
+00:46:01,510 --> 00:46:05,700
+there's multiple, there's multiple art
+artists that belong to a single album,
+
+816
+00:46:06,390 --> 00:46:08,900
+right? So I can do this through a,
+
+817
+00:46:08,980 --> 00:46:11,910
+what's called a cross
+reference table and here the,
+
+818
+00:46:11,910 --> 00:46:16,910
+that standard way to denote this as
+this concatenate the two names of the
+
+819
+00:46:17,070 --> 00:46:18,750
+relation to two names
+of the tables together.
+
+820
+00:46:19,050 --> 00:46:21,990
+So now I have a new relationship called
+artist album that's going to have an
+
+821
+00:46:21,990 --> 00:46:24,540
+artist id and an album id. Um,
+
+822
+00:46:24,570 --> 00:46:27,240
+I no longer need to store the
+artist and the album table.
+
+823
+00:46:27,570 --> 00:46:32,040
+And then I have foreign keys. Now in this
+other relation. Now pointing to these,
+
+824
+00:46:32,250 --> 00:46:35,500
+both of these things here and
+the combination of an art's Id.
+
+825
+00:46:35,500 --> 00:46:38,550
+And now my id is the primary key for
+this relation cause you can have multiple
+
+826
+00:46:38,550 --> 00:46:42,600
+attributes together as the primary key.
+This assures that one artist can't be,
+
+827
+00:46:43,140 --> 00:46:46,380
+uh, on the same album multiple times
+or did noted that's on the same time.
+
+828
+00:46:47,010 --> 00:46:50,130
+Right. So we'll see this
+later on. We talk about joins,
+
+829
+00:46:50,130 --> 00:46:55,110
+but now I can write queries that we'll
+combine these relations together and
+
+830
+00:46:55,110 --> 00:46:58,860
+match up the different attributes based
+on their foreign keys and underneath the
+
+831
+00:46:58,860 --> 00:47:03,150
+car that the data center most data systems
+will actually do is that if I try to
+
+832
+00:47:03,150 --> 00:47:06,930
+insert an entry into the artist's album
+relation that doesn't have a matching
+
+833
+00:47:06,930 --> 00:47:10,020
+artist and the artist table and does
+it have a matching album in the album
+
+834
+00:47:10,020 --> 00:47:14,180
+table? It'll throw an error. It'll
+prevent me from doing that. Right.
+
+835
+00:47:14,230 --> 00:47:15,330
+Cause it says I don't have a, you know,
+
+836
+00:47:15,330 --> 00:47:20,220
+there's no corresponding match for the
+foreign king or likewise, if I delete a,
+
+837
+00:47:20,400 --> 00:47:21,870
+an ng from the album table,
+
+838
+00:47:22,320 --> 00:47:25,440
+I can have it automatically delete
+the entry from the artist album table.
+
+839
+00:47:25,750 --> 00:47:27,690
+Or this is called a
+cascading delete. Right.
+
+840
+00:47:27,690 --> 00:47:30,060
+This ensures that there's
+no pointer just to,
+
+841
+00:47:30,100 --> 00:47:31,750
+to something that doesn't exist anymore.
+
+842
+00:47:32,900 --> 00:47:35,620
+And it is another good example of what
+I gave to these ministers will provide
+
+843
+00:47:35,620 --> 00:47:38,260
+for you that you would otherwise have
+to write yourself [inaudible] your
+
+844
+00:47:38,260 --> 00:47:41,620
+application code. All right,
+
+845
+00:47:41,620 --> 00:47:45,130
+so now that we understand roughly what
+a relational model is and how we're
+
+846
+00:47:45,130 --> 00:47:46,990
+actually can store data in them,
+
+847
+00:47:47,470 --> 00:47:50,600
+now we need to actually get
+get data out of it, right?
+
+848
+00:47:50,600 --> 00:47:52,930
+I put data in and get
+data out of it, right?
+
+849
+00:47:52,930 --> 00:47:57,010
+And there's essentially two
+sort of classes of languages
+that you can implement
+
+850
+00:47:57,010 --> 00:48:00,780
+for this on the first are
+called procedural where this
+is where you're going to
+
+851
+00:48:00,780 --> 00:48:04,570
+find at a high level the actual steps
+you're going to execute it to run your
+
+852
+00:48:04,570 --> 00:48:08,410
+query. Um, and the second
+one is called non procedural.
+
+853
+00:48:08,420 --> 00:48:10,210
+You're describing a really high level,
+
+854
+00:48:10,450 --> 00:48:15,130
+the answer you want the data system to
+actually compute and then it's left to
+
+855
+00:48:15,130 --> 00:48:17,770
+figure out how to actually do
+that automatically on its own.
+
+856
+00:48:18,700 --> 00:48:23,470
+So the first one is is with the category
+of relationship Relational Algebra is
+
+857
+00:48:23,470 --> 00:48:25,360
+which we'll cover the
+next couple of slides.
+
+858
+00:48:25,960 --> 00:48:28,930
+The last one is what relational
+calculus is based on.
+
+859
+00:48:29,410 --> 00:48:33,970
+We are not going to cover this because
+its usefulness is very limited for what
+
+860
+00:48:33,970 --> 00:48:35,620
+we care about in this course. A,
+
+861
+00:48:35,650 --> 00:48:37,990
+if you're building a query
+optimizer from scratch,
+
+862
+00:48:38,200 --> 00:48:39,850
+this is something that
+you have to understand.
+
+863
+00:48:39,880 --> 00:48:41,770
+Or let's say you want to replace
+SQL with something even better.
+
+864
+00:48:41,770 --> 00:48:45,470
+Although in my opinion, SQL is
+pretty good. Uh, then you would,
+
+865
+00:48:45,470 --> 00:48:48,310
+you have to understand relational calculus
+actually had to do this. So we're,
+
+866
+00:48:48,310 --> 00:48:53,280
+we're going to focus on a
+relational Algebra here. So,
+
+867
+00:48:53,290 --> 00:48:56,530
+so relational Algebra again is
+the, uh, the funnel on operations.
+
+868
+00:48:56,530 --> 00:48:59,830
+We can define actually retrieve
+and manipulate data. Uh,
+
+869
+00:48:59,880 --> 00:49:02,740
+and that actually stored in a
+relation, and this is again,
+
+870
+00:49:02,740 --> 00:49:06,250
+this was defined by Ted Cobb when he
+wrote this early papers in the 1970s.
+
+871
+00:49:06,280 --> 00:49:07,240
+Right? He sort of laid out,
+
+872
+00:49:07,450 --> 00:49:10,150
+here's what a relational model is and
+here's a relational Algebra to actually
+
+873
+00:49:10,390 --> 00:49:13,360
+read and write data or get
+data in and out of relations.
+
+874
+00:49:14,350 --> 00:49:17,590
+So there's going to be a seven different
+operators we're going to care about.
+
+875
+00:49:17,960 --> 00:49:19,720
+Uh, we'll go through
+these at a high level.
+
+876
+00:49:19,990 --> 00:49:24,370
+They'll mostly come up later on when
+we talk about query execution. Um,
+
+877
+00:49:24,500 --> 00:49:26,550
+they're not, they're
+not hard to understand.
+
+878
+00:49:27,070 --> 00:49:30,640
+I think it's important to get to see them
+once so that when they come up again,
+
+879
+00:49:30,640 --> 00:49:31,780
+you know what they are.
+
+880
+00:49:33,250 --> 00:49:38,140
+So each operator's gonna take in either
+one or more relations as the input and
+
+881
+00:49:38,140 --> 00:49:39,820
+it's always going to
+output a new relation.
+
+882
+00:49:40,400 --> 00:49:43,330
+And the idea here is that when we
+actually want to write queries,
+
+883
+00:49:43,720 --> 00:49:47,800
+we're going to chain together all these
+operators together using them as sort of
+
+884
+00:49:47,800 --> 00:49:47,960
+the, the,
+
+885
+00:49:47,960 --> 00:49:52,090
+the building blocks to then generate
+more complex queries that derive more
+
+886
+00:49:52,090 --> 00:49:54,280
+complicated answers then the basic things.
+
+887
+00:49:56,500 --> 00:49:59,830
+So the first relational operator
+is to do a select right?
+
+888
+00:49:59,830 --> 00:50:03,480
+And that's represented by the, the
+lower case sigma sigma symbol. Right?
+
+889
+00:50:03,490 --> 00:50:04,530
+In my opinion, this is easy to,
+
+890
+00:50:04,570 --> 00:50:08,500
+aren't easy to remember because to select
+certain s in the sigma starts with an
+
+891
+00:50:08,500 --> 00:50:09,760
+s. Um,
+
+892
+00:50:10,240 --> 00:50:14,020
+but the basic idea is here is that we're
+going to take our relation as their
+
+893
+00:50:14,020 --> 00:50:18,850
+input and then we're going to select or
+choose a subset of the Tupelos that we
+
+894
+00:50:18,850 --> 00:50:21,250
+actually want to produce
+as our output. Right.
+
+895
+00:50:21,250 --> 00:50:24,760
+In the actual original relational model
+papers. The, these are called restrict,
+
+896
+00:50:25,150 --> 00:50:25,420
+right?
+
+897
+00:50:25,420 --> 00:50:28,430
+Because you're essentially restricting
+what tuples are actually put in the
+
+898
+00:50:28,450 --> 00:50:29,840
+outlet. Alright.
+
+899
+00:50:29,910 --> 00:50:34,790
+Skinny representatives with the lower
+the lower sigma fall by a a subscript
+
+900
+00:50:34,790 --> 00:50:38,510
+credit kit. I think of like, you know,
+something like classic bullying logic.
+
+901
+00:50:38,690 --> 00:50:41,330
+Like if something's great and it's
+something or them in glass and something.
+
+902
+00:50:41,660 --> 00:50:44,540
+And then we define what relation
+we want. Apply the selection on.
+
+903
+00:50:45,980 --> 00:50:47,450
+Let's say I was to build
+relation like this,
+
+904
+00:50:47,750 --> 00:50:51,590
+I have relation are these two
+attributes, ae aid and PID.
+
+905
+00:50:52,070 --> 00:50:55,970
+So I can have a select like this
+and it says where aid equals a two.
+
+906
+00:50:56,360 --> 00:50:58,570
+And then the output that's
+produced is just again,
+
+907
+00:50:58,580 --> 00:51:01,880
+any tool where the attribute
+a aid equals eight too.
+
+908
+00:51:03,170 --> 00:51:05,810
+I can start combining
+these together. A, again,
+
+909
+00:51:05,810 --> 00:51:09,540
+using conjunctions and
+disjunctions do things like uh,
+
+910
+00:51:09,590 --> 00:51:14,120
+select where aid is equals two and
+bid is greater than one or two.
+
+911
+00:51:14,500 --> 00:51:18,620
+And again, that just only selects
+that one. Two was the output, right?
+
+912
+00:51:19,010 --> 00:51:23,420
+Pretty straight forward in sequel,
+
+913
+00:51:23,420 --> 00:51:24,253
+essentially it looks,
+
+914
+00:51:25,190 --> 00:51:28,280
+what we're defining here is essentially
+the same thing as like the where clause,
+
+915
+00:51:28,490 --> 00:51:29,870
+right? So this what we have in the,
+
+916
+00:51:29,870 --> 00:51:34,450
+where clause below is the same
+thing as we had up above in,
+
+917
+00:51:34,480 --> 00:51:37,880
+in, uh, for our predicate
+here, right? Again,
+
+918
+00:51:37,880 --> 00:51:40,880
+it's not exactly the same as the select
+cause the slot can do in SQL can do a
+
+919
+00:51:40,880 --> 00:51:43,520
+bunch of more stuff that we can't
+do here in relational Algebra.
+
+920
+00:51:45,860 --> 00:51:50,860
+Next to me have this
+projection and projection is
+basically going to limit which
+
+921
+00:51:51,260 --> 00:51:56,030
+attributes actually get produced as
+the output from the input, right?
+
+922
+00:51:56,030 --> 00:51:58,130
+So again, projection starts with a p.
+
+923
+00:51:58,310 --> 00:52:01,520
+You represent this with a
+lowercase pie symbol. Um,
+
+924
+00:52:02,120 --> 00:52:05,960
+the thing you can do with the projection
+is that you can add more than just
+
+925
+00:52:05,960 --> 00:52:09,110
+saying, take these attributes
+and produces my output. You can,
+
+926
+00:52:09,110 --> 00:52:12,700
+you actually can reorder
+them, right? The output of,
+
+927
+00:52:12,760 --> 00:52:16,020
+of the output of, of these
+operators are actually, uh,
+
+928
+00:52:16,140 --> 00:52:18,180
+the order actually matters.
+So the attributes in,
+
+929
+00:52:18,200 --> 00:52:21,590
+in a single tuple the ordering of the
+tuples across the entire relation,
+
+930
+00:52:21,590 --> 00:52:22,550
+it actually doesn't matter.
+
+931
+00:52:23,250 --> 00:52:26,810
+You can also actually manipulate them
+to actually change the output based on
+
+932
+00:52:26,990 --> 00:52:28,070
+some additional logic.
+
+933
+00:52:29,180 --> 00:52:32,960
+So I can do a projection
+like this where I say, uh,
+
+934
+00:52:33,410 --> 00:52:38,120
+I have my inner select where I say aid
+equals two from the relation r but then
+
+935
+00:52:38,120 --> 00:52:40,910
+in my projection list
+I want to take the bid,
+
+936
+00:52:41,120 --> 00:52:45,020
+subtract it by a hundred
+and then output the aid.
+
+937
+00:52:45,020 --> 00:52:48,890
+So I'm flipping the order and
+manipulating the bid. Right? And again,
+
+938
+00:52:48,890 --> 00:52:51,140
+now you see how we started to chain
+these things together to produce more
+
+939
+00:52:51,140 --> 00:52:55,880
+complicated things. And in sequel it
+would essentially look like this, right?
+
+940
+00:52:55,880 --> 00:52:59,630
+The, the output target of the select
+statement is it's the same thing in,
+
+941
+00:52:59,630 --> 00:53:03,800
+in my uh, upper target in
+the projection operator. Yes.
+
+942
+00:53:12,250 --> 00:53:13,250
+It's question is,
+
+943
+00:53:14,810 --> 00:53:19,340
+is it fair to say that sequel
+is inherently procedural? No.
+
+944
+00:53:19,850 --> 00:53:24,050
+So sequel is actually a non procedural
+language based on Relational Algebra.
+
+945
+00:53:24,620 --> 00:53:29,460
+Or the difference here is
+that in sequel I'm saying,
+
+946
+00:53:29,490 --> 00:53:34,140
+I'm defining what I want, not
+actually how to actually execute that.
+
+947
+00:53:34,650 --> 00:53:38,730
+Right? Aim Relational Algebra. You
+would start at the, the inside of the,
+
+948
+00:53:38,730 --> 00:53:40,620
+of the, of the parentheses.
+
+949
+00:53:40,830 --> 00:53:45,630
+So I have to do this select first and
+then I can do my projection, right?
+
+950
+00:53:45,900 --> 00:53:46,500
+So I sort of like,
+
+951
+00:53:46,500 --> 00:53:49,830
+it's almost like the exact steps you have
+to execute deck to produce the answer.
+
+952
+00:53:50,220 --> 00:53:51,810
+In sequel for the simple example,
+
+953
+00:53:51,810 --> 00:53:54,150
+you would essentially do it the same
+way the relational Algebra is written,
+
+954
+00:53:54,540 --> 00:53:57,330
+but we see more complicated
+things. It does. You don't,
+
+955
+00:53:57,390 --> 00:53:59,030
+you don't have to execute it the
+same way in the relational Algebra.
+
+956
+00:53:59,030 --> 00:53:59,863
+It actually defines it.
+
+957
+00:54:04,700 --> 00:54:09,120
+All right? So now we can talk about the
+additional, uh, binary operators. Again,
+
+958
+00:54:09,120 --> 00:54:11,640
+if you taken discrete math or
+any kind of set theory course,
+
+959
+00:54:11,880 --> 00:54:15,900
+this should all be very
+familiar. Uh, we can do a union,
+
+960
+00:54:16,950 --> 00:54:17,220
+right?
+
+961
+00:54:17,220 --> 00:54:20,700
+You basically take two relations and
+you're gonna take all the two poles that
+
+962
+00:54:20,700 --> 00:54:23,850
+are in the Wa and one relation also was
+in the other relation and combine them
+
+963
+00:54:23,850 --> 00:54:28,530
+together in, in a new relation. So for,
+so for this, I now have our relations,
+
+964
+00:54:28,560 --> 00:54:33,030
+our aid bid and asks with aid and
+bid. So when I take the union to them,
+
+965
+00:54:33,030 --> 00:54:36,540
+it's just again, concatenating
+the two relations together.
+
+966
+00:54:37,230 --> 00:54:41,670
+So in this example here, uh, it is
+ordered based on the two relations.
+
+967
+00:54:41,670 --> 00:54:45,010
+So in the output, I have all
+the two polls from our folly,
+
+968
+00:54:45,010 --> 00:54:48,300
+all the troubles from s, but
+again, under the relational model,
+
+969
+00:54:48,570 --> 00:54:50,100
+it's actually unordered.
+
+970
+00:54:50,280 --> 00:54:53,530
+So this can be actually in any possible
+order that it wants that or that,
+
+971
+00:54:53,560 --> 00:54:56,750
+you know, whenever the system
+wants to use. And in the,
+
+972
+00:54:56,780 --> 00:55:01,380
+there's a union operator and SQL
+essentially works just like this. So
+
+973
+00:55:04,110 --> 00:55:07,770
+for this to work though, what I'll
+say is that you have to have the, the,
+
+974
+00:55:07,910 --> 00:55:10,260
+the two relations you're
+trying to union together,
+
+975
+00:55:10,350 --> 00:55:13,460
+they have to have the exact same
+attributes for the same, same domain.
+
+976
+00:55:13,460 --> 00:55:17,070
+So same types, right? If the
+relation has a third attribute,
+
+977
+00:55:17,310 --> 00:55:20,860
+then the union wouldn't, wouldn't be
+allowed to proceed. And it works the same,
+
+978
+00:55:20,940 --> 00:55:24,720
+same way in the SQL, there's
+also intersection again,
+
+979
+00:55:24,720 --> 00:55:29,160
+same thing where you just basically
+get all the tuples that appear in both,
+
+980
+00:55:29,190 --> 00:55:33,630
+both, uh, input relations. So in case
+rns, when I take the intersection of them,
+
+981
+00:55:33,930 --> 00:55:38,220
+I only get that single tool. And again,
+the same thing. I can do this. You know,
+
+982
+00:55:38,270 --> 00:55:43,230
+there's a intersect operator in SQL and
+it has to assume that the two relations
+
+983
+00:55:43,230 --> 00:55:48,120
+have the exact same number of attributes.
+Uh, the last one is difference.
+
+984
+00:55:48,150 --> 00:55:50,340
+And again, you're basically taking, uh,
+
+985
+00:55:50,550 --> 00:55:54,690
+all the two poles that fear appear in
+the first relation and removing any ones
+
+986
+00:55:54,690 --> 00:55:57,810
+that appear in the second
+relation. And so again,
+
+987
+00:55:57,810 --> 00:56:00,460
+it works just like the other ones.
+I take the difference and uh,
+
+988
+00:56:00,590 --> 00:56:03,960
+the output and in, uh, in SQL,
+
+989
+00:56:04,440 --> 00:56:06,510
+the keyword is accept to do this.
+
+990
+00:56:09,450 --> 00:56:09,720
+Alright,
+
+991
+00:56:09,720 --> 00:56:12,510
+so now when does or maybe
+do a more complicated things
+to start combining these
+
+992
+00:56:12,510 --> 00:56:14,760
+two bullets together? Other
+than those basic set operators?
+
+993
+00:56:15,480 --> 00:56:17,730
+So the first thing we can do is
+take the product of two sets.
+
+994
+00:56:17,940 --> 00:56:20,910
+So this is sometimes called the
+Cartesian product. Basically,
+
+995
+00:56:20,910 --> 00:56:22,500
+you get all the tuples you get,
+
+996
+00:56:22,530 --> 00:56:25,960
+you're going to get a new relation as
+your output that contains all possible
+
+997
+00:56:25,960 --> 00:56:30,160
+combinations of the two posts
+from the two relations, right?
+
+998
+00:56:30,880 --> 00:56:34,410
+So you take rns, you take, you
+take a product of them, uh,
+
+999
+00:56:34,510 --> 00:56:38,350
+the cross join and then you produce
+in this, this giant map like this.
+
+1000
+00:56:38,950 --> 00:56:42,400
+So here now again, we're not,
+we're actually can get nading the,
+
+1001
+00:56:42,400 --> 00:56:45,520
+the two close together and
+producing them as, as a new tool.
+
+1002
+00:56:45,520 --> 00:56:47,410
+So the first two relations,
+
+1003
+00:56:47,410 --> 00:56:50,080
+the original Asians each had
+two columns and my output,
+
+1004
+00:56:50,080 --> 00:56:52,180
+now they have four columns, right?
+
+1005
+00:56:52,180 --> 00:56:54,370
+So for every single Tupelo
+in the first relation,
+
+1006
+00:56:54,520 --> 00:56:58,000
+I'm concatenated together with every
+single Tupo in the second relation and so
+
+1007
+00:56:58,000 --> 00:57:02,630
+forth. So it seems kind of useless,
+right? Why would it actually anyone,
+
+1008
+00:57:02,700 --> 00:57:04,030
+you know, why would you
+actually want to do this?
+
+1009
+00:57:05,140 --> 00:57:07,630
+And I think of an example where you
+would actually want to use something like
+
+1010
+00:57:07,630 --> 00:57:08,463
+this,
+
+1011
+00:57:09,220 --> 00:57:14,220
+was that join [inaudible]
+we'll see you on next slide.
+
+1012
+00:57:14,240 --> 00:57:17,790
+And now this is a type of join,
+but it's actually, you know,
+
+1013
+00:57:18,150 --> 00:57:19,420
+it's not trying to match things up,
+
+1014
+00:57:19,420 --> 00:57:21,010
+but just trying to get
+all possible combinations.
+
+1015
+00:57:24,550 --> 00:57:26,350
+So this shows up in testing a lot, right?
+
+1016
+00:57:26,350 --> 00:57:30,400
+If you want to make sure that you test
+every single combination of different
+
+1017
+00:57:30,400 --> 00:57:34,570
+parameters, you take the
+Cartesian product, right?
+
+1018
+00:57:35,260 --> 00:57:37,600
+It's actually really simple to implement,
+right? Cause there's two, four loops.
+
+1019
+00:57:37,600 --> 00:57:39,520
+We just, for every single
+entry in the first one,
+
+1020
+00:57:39,940 --> 00:57:41,440
+look through every single
+century and the second one,
+
+1021
+00:57:41,440 --> 00:57:43,600
+and concatenate and
+concatenate them together.
+
+1022
+00:57:45,820 --> 00:57:48,640
+And SQL, there is a cross
+joint operator like this.
+
+1023
+00:57:49,240 --> 00:57:52,420
+You can also get the same thing if you
+just have two relations listed in the
+
+1024
+00:57:52,420 --> 00:57:55,990
+from clause without a where calls to
+define how they're actually being joined
+
+1025
+00:57:55,990 --> 00:57:59,250
+together. All right,
+
+1026
+00:57:59,260 --> 00:58:01,870
+so the thing that they asked about or
+that thing that somebody mentioned before
+
+1027
+00:58:01,870 --> 00:58:02,770
+was to do a join.
+
+1028
+00:58:03,430 --> 00:58:08,430
+And so s a join a join is basically
+like a superset of a cross joint.
+
+1029
+00:58:09,430 --> 00:58:11,230
+Um, and this example here,
+
+1030
+00:58:11,230 --> 00:58:15,090
+we're doing essentially what I'll call
+a straight joint or equity join or our
+
+1031
+00:58:15,100 --> 00:58:18,790
+natural join where we're going to take a,
+
+1032
+00:58:18,820 --> 00:58:23,470
+we're going to create a new relation where
+we get a combination of the two poles
+
+1033
+00:58:24,010 --> 00:58:28,570
+that matched some predicate in,
+you know, in to do our join,
+
+1034
+00:58:29,370 --> 00:58:33,550
+uh, in both of our relations.
+So in this example here,
+
+1035
+00:58:34,000 --> 00:58:38,950
+we're gonna take the all,
+every single attributes in our,
+
+1036
+00:58:39,190 --> 00:58:40,400
+and we're going to check
+and see if there's an,
+
+1037
+00:58:40,630 --> 00:58:44,890
+a Tupelo in s that has
+the exact same values.
+
+1038
+00:58:44,890 --> 00:58:49,420
+And the exact same attributes, right?
+So the output would look like this.
+
+1039
+00:58:49,420 --> 00:58:51,760
+So a three and one are three.
+
+1040
+00:58:51,850 --> 00:58:56,850
+There's only one tool in our has a match
+in s and that's produces or output,
+
+1041
+00:58:58,240 --> 00:59:01,620
+right? It's called a natural joint
+cause it's the natural way, you know,
+
+1042
+00:59:01,630 --> 00:59:04,470
+natural quotes. You would
+combine together, uh,
+
+1043
+00:59:04,690 --> 00:59:09,490
+these two relations and sequel,
+you can evoke it directly as,
+
+1044
+00:59:09,490 --> 00:59:12,340
+as a natural drawing like this. So
+again, it's going to look to see,
+
+1045
+00:59:12,340 --> 00:59:16,240
+do I have to attribute to the exact same
+name in these two relations and check
+
+1046
+00:59:16,240 --> 00:59:19,690
+to see whether they're
+values match up? Yes.
+
+1047
+00:59:21,060 --> 00:59:24,680
+We'll section the question is what
+if there was between this and the
+
+1048
+00:59:24,680 --> 00:59:28,910
+intersection, the intersection
+is removing any attributes? Uh,
+
+1049
+00:59:28,930 --> 00:59:33,800
+no attribute of the same? Yes.
+Good question. It's difference.
+
+1050
+00:59:35,270 --> 00:59:36,760
+Sorry, I wondering
+
+1051
+00:59:38,040 --> 00:59:40,770
+that contained the tuples appear
+in both the input relations.
+
+1052
+00:59:41,320 --> 00:59:42,153
+Okay.
+
+1053
+00:59:47,800 --> 00:59:49,180
+In this case here, yes. It's the same.
+
+1054
+00:59:51,330 --> 00:59:52,163
+Yes.
+
+1055
+00:59:54,640 --> 00:59:56,650
+So natural joined it doesn't
+appear actually that much.
+
+1056
+00:59:56,650 --> 00:59:59,380
+You actually don't want to use this
+because you're assuming that the,
+
+1057
+00:59:59,770 --> 01:00:02,650
+you're sort of assuming that the
+Schema can match up based on the names.
+
+1058
+01:00:02,920 --> 01:00:05,910
+We'll see examples when we talk about
+joins later in the semester where you can
+
+1059
+01:00:05,910 --> 01:00:08,950
+actually define how you want to join
+and orange clause of the where clause.
+
+1060
+01:00:09,340 --> 01:00:12,460
+Right. You actually, you ma you almost,
+and we'll never see something like this,
+
+1061
+01:00:12,460 --> 01:00:15,610
+but this is how you would define it and
+the original relational Algebra in the
+
+1062
+01:00:15,610 --> 01:00:16,443
+back. Yes.
+
+1063
+01:00:21,680 --> 01:00:26,380
+This question is that the aid mat did
+not match with the bid value match would
+
+1064
+01:00:26,440 --> 01:00:30,850
+still produce a joint output? No. Right.
+
+1065
+01:00:30,850 --> 01:00:33,670
+Cause the national point
+because for everything we'll
+attribute it has the same.
+
+1066
+01:00:34,900 --> 01:00:37,170
+Every single asked me that it
+has the same name. Actually this,
+
+1067
+01:00:37,210 --> 01:00:40,240
+this is the answer to your question.
+Every single Astra has the same name.
+
+1068
+01:00:40,240 --> 01:00:44,350
+I'll compare to see whether they match
+and if at least one of them doesn't match
+
+1069
+01:00:44,350 --> 01:00:45,760
+then does not produce the output.
+
+1070
+01:00:47,020 --> 01:00:51,100
+So there's this natural join
+and intersection intersection.
+
+1071
+01:00:51,100 --> 01:00:54,940
+You have to have exactly the same
+attributes in the natural join.
+
+1072
+01:00:55,090 --> 01:00:58,870
+I could have a third attribute on s and
+it wouldn't actually match them. Right?
+
+1073
+01:00:58,870 --> 01:01:00,490
+Cause there's no corresponding one are,
+
+1074
+01:01:06,800 --> 01:01:07,633
+okay.
+
+1075
+01:01:07,820 --> 01:01:12,720
+So these seven operators that I should
+just went through, these are the,
+
+1076
+01:01:12,760 --> 01:01:17,180
+again, the basic building blocks of what
+was defined by Ted cod in the original
+
+1077
+01:01:17,180 --> 01:01:21,050
+relational model papers in
+the 1970s but it's obviously,
+
+1078
+01:01:21,050 --> 01:01:23,840
+there's a bunch of examples we can
+think of where the original relational,
+
+1079
+01:01:23,870 --> 01:01:27,200
+these original relational
+outros doesn't cover, right?
+
+1080
+01:01:27,230 --> 01:01:31,490
+Sorting how to actually do updates,
+renaming the renaming the columns.
+
+1081
+01:01:31,790 --> 01:01:34,160
+So after the original paper,
+
+1082
+01:01:34,370 --> 01:01:37,010
+there was a Muslin extensions
+for the relational model,
+
+1083
+01:01:37,010 --> 01:01:40,520
+relational Algebra that cover all these
+things we'd actually care about in, in,
+
+1084
+01:01:40,530 --> 01:01:42,230
+in the real world, right?
+
+1085
+01:01:42,230 --> 01:01:44,870
+So these are the basic symbols
+actually do these things. Again,
+
+1086
+01:01:44,870 --> 01:01:46,220
+from our purposes,
+
+1087
+01:01:46,220 --> 01:01:51,110
+we don't really care so much because
+we're actually building a system that, um,
+
+1088
+01:01:51,410 --> 01:01:54,500
+that we can then apply these things on
+top of and go beyond what there is an
+
+1089
+01:01:54,500 --> 01:01:56,750
+original relational Algebra
+can actually do. But again,
+
+1090
+01:01:56,750 --> 01:01:59,030
+these are just important to sort of
+understand and know that they actually
+
+1091
+01:01:59,030 --> 01:02:02,360
+exist. And we'll see them later on
+when we talk about query processing.
+
+1092
+01:02:04,460 --> 01:02:05,293
+Okay.
+
+1093
+01:02:05,870 --> 01:02:09,620
+So the question you had earlier before was
+
+1094
+01:02:11,110 --> 01:02:15,130
+SQL essentially just relational Algebra.
+And I said, no. All right. Again,
+
+1095
+01:02:15,130 --> 01:02:18,790
+the reason is because relational Algebra
+is still going to define the exact
+
+1096
+01:02:18,790 --> 01:02:23,700
+steps wanna use to actually execute
+the query. So what do I mean by that?
+
+1097
+01:02:23,730 --> 01:02:28,440
+Let's say I have two. I have a single
+query that wants to find all the,
+
+1098
+01:02:28,500 --> 01:02:30,780
+uh, the entries, uh, from,
+
+1099
+01:02:30,810 --> 01:02:34,680
+from the natural joint of rns
+where a bid equals one oh two.
+
+1100
+01:02:35,370 --> 01:02:39,120
+So these two relational Algebra
+statements here are actually equivalent.
+
+1101
+01:02:39,630 --> 01:02:43,700
+They will produce the same answer,
+right? The first one does the,
+
+1102
+01:02:43,700 --> 01:02:47,280
+the National Joint Ping rns. Then
+it does the projection or sorry,
+
+1103
+01:02:47,280 --> 01:02:51,250
+then does the restriction on the select
+to filter out all the entries where w
+
+1104
+01:02:51,270 --> 01:02:54,900
+that were bid doesn't equal one a
+two. And in the second one here,
+
+1105
+01:02:54,900 --> 01:02:57,720
+I actually do the selection on s first.
+
+1106
+01:02:57,990 --> 01:03:02,970
+Then I do the national joint. These were
+produced the exactly the same answer,
+
+1107
+01:03:03,540 --> 01:03:08,010
+but these are actually a lot
+different run time performance, right?
+
+1108
+01:03:08,610 --> 01:03:09,480
+If I have,
+
+1109
+01:03:09,510 --> 01:03:14,510
+if every single tuple in s
+has value equals one oh two,
+
+1110
+01:03:14,850 --> 01:03:17,040
+then it's the same thing
+as, as this one here.
+
+1111
+01:03:17,040 --> 01:03:18,420
+Cause they always can
+produce the same output.
+
+1112
+01:03:18,840 --> 01:03:23,840
+But if only one out of a billion has
+value of one oh two then the second one is
+
+1113
+01:03:24,720 --> 01:03:27,600
+x to be faster because I'm going to
+filter out everything then actually do the
+
+1114
+01:03:27,600 --> 01:03:30,390
+join. So again,
+
+1115
+01:03:30,390 --> 01:03:33,660
+this is why I was saying that in a
+procedural language like racial Algebra,
+
+1116
+01:03:33,870 --> 01:03:36,450
+just still defining the steps you'd
+actually need to do to actually get the
+
+1117
+01:03:36,450 --> 01:03:38,190
+query right.
+
+1118
+01:03:38,190 --> 01:03:42,370
+And what we really want is just
+to say at a high level what,
+
+1119
+01:03:42,470 --> 01:03:45,540
+what the answer we want and then we'll
+have the the days and figure out how to
+
+1120
+01:03:45,540 --> 01:03:50,210
+do that for us. So in English, this
+sentence here retrieved the joint tuples.
+
+1121
+01:03:50,210 --> 01:03:52,950
+Some rns were bid equals
+one oh two that's,
+
+1122
+01:03:52,980 --> 01:03:55,320
+this is equivalent to
+what these guys are doing.
+
+1123
+01:03:55,320 --> 01:03:59,850
+But I didn't say actually how to do
+it. The data's ism can figure out, oh,
+
+1124
+01:03:59,850 --> 01:04:00,683
+why I have,
+
+1125
+01:04:00,810 --> 01:04:04,320
+I have one to pull out of a billion that
+has value equals one oh two so let me
+
+1126
+01:04:04,320 --> 01:04:06,000
+do my, my predicate first.
+
+1127
+01:04:06,000 --> 01:04:09,900
+I mean you might filtering first
+and then I'll do my join, right?
+
+1128
+01:04:09,960 --> 01:04:12,270
+Or if it knows that all the
+values, he goes one to two,
+
+1129
+01:04:12,300 --> 01:04:14,040
+then now let's do the joint
+anyway because it doesn't,
+
+1130
+01:04:14,070 --> 01:04:14,903
+it doesn't actually matter.
+
+1131
+01:04:16,290 --> 01:04:20,910
+So this is what SQL is
+going to be for us, right?
+
+1132
+01:04:21,390 --> 01:04:26,390
+It's going to be a way for us to define
+at a high level declare at a high level
+
+1133
+01:04:27,450 --> 01:04:32,380
+what we want the answer to be
+regardless of how the, how the,
+
+1134
+01:04:32,400 --> 01:04:37,200
+the, the, the data's actually being
+physically stored or how the, uh,
+
+1135
+01:04:37,290 --> 01:04:39,870
+we want to order our operators
+in our relational Algebra.
+
+1136
+01:04:40,290 --> 01:04:43,050
+So we'll see this later in the semester
+when we talk about query optimization.
+
+1137
+01:04:43,320 --> 01:04:44,070
+There's a bunch of rules.
+
+1138
+01:04:44,070 --> 01:04:48,090
+You can define how you actually can
+reorder relational Algebra operators and
+
+1139
+01:04:48,180 --> 01:04:52,670
+began anted. They're always going to
+still produce the same answer. So the,
+
+1140
+01:04:52,670 --> 01:04:55,170
+the main takeaway from this is
+that sequel is essentially the,
+
+1141
+01:04:55,170 --> 01:04:59,160
+the de facto standard for
+how you write queries on the,
+
+1142
+01:04:59,220 --> 01:05:03,300
+on our relational model databases.
+And a lot, actually a lot of the, uh,
+
+1143
+01:05:03,360 --> 01:05:05,370
+the other data models that
+I talked about before,
+
+1144
+01:05:05,790 --> 01:05:08,610
+a lot of these no SQL systems and,
+and uh, other types of systems,
+
+1145
+01:05:08,760 --> 01:05:11,100
+they're now adding SQL support
+on top of it, uh, their,
+
+1146
+01:05:11,130 --> 01:05:14,130
+their systems because it's, it's the
+factor of standard. It's everywhere.
+
+1147
+01:05:14,130 --> 01:05:15,960
+This is what people would expect. Uh,
+
+1148
+01:05:15,960 --> 01:05:19,260
+if you want to have a sort of a database
+system that people can use or want to
+
+1149
+01:05:19,270 --> 01:05:20,103
+use.
+
+1150
+01:05:20,630 --> 01:05:23,380
+So essentially what's going to happen
+is this an example I had before where I
+
+1151
+01:05:23,470 --> 01:05:24,910
+looped through my flat file,
+
+1152
+01:05:25,090 --> 01:05:28,090
+looked at every single line and try to
+find the match where, where the bag,
+
+1153
+01:05:28,150 --> 01:05:29,320
+the name he goes ice cube.
+
+1154
+01:05:29,710 --> 01:05:32,290
+But now I can just declare it my
+SQL statement at a high level.
+
+1155
+01:05:32,530 --> 01:05:36,040
+This is the answer that I want at Jason's
+free to figure out the best way to
+
+1156
+01:05:36,040 --> 01:05:38,850
+actually do it. Okay?
+
+1157
+01:05:40,200 --> 01:05:40,670
+Okay.
+
+1158
+01:05:40,670 --> 01:05:41,503
+Any questions?
+
+1159
+01:05:42,720 --> 01:05:43,760
+[inaudible]
+
+1160
+01:05:44,650 --> 01:05:48,760
+okay, so we'll finish up here.
+
+1161
+01:05:48,970 --> 01:05:50,440
+Please leave your, uh,
+
+1162
+01:05:50,500 --> 01:05:54,000
+your self assessment for the CBEST law
+staff before you leave. Can Somebody,
+
+1163
+01:05:54,280 --> 01:05:56,260
+I'll post the answers tonight on Piazza.
+
+1164
+01:05:56,620 --> 01:05:58,540
+It's gained from me trying to
+figure out how you actually,
+
+1165
+01:05:58,930 --> 01:06:02,170
+how well you actually know. See I floss
+the main takeaway from all this again,
+
+1166
+01:06:02,170 --> 01:06:05,050
+databases are everywhere. You're going
+to come across them throughout your life,
+
+1167
+01:06:05,050 --> 01:06:05,883
+so they're important,
+
+1168
+01:06:06,140 --> 01:06:08,470
+but they should Alvarez mean the
+perimeters we can build on top of,
+
+1169
+01:06:08,470 --> 01:06:11,590
+do more complicated things
+and then we'll see later on.
+
+1170
+01:06:11,590 --> 01:06:15,760
+Hatchi how do I take laser Algebra and
+generate optimized queries for that?
+
+1171
+01:06:16,040 --> 01:06:18,880
+Okay. All right, so next
+class we will start,
+
+1172
+01:06:18,880 --> 01:06:20,590
+we will cover what I call advanced sequel.
+
+1173
+01:06:21,250 --> 01:06:23,470
+This is sort of like you're going
+to high level over your SQL.
+
+1174
+01:06:23,500 --> 01:06:25,170
+Most of you guys already seen SQL fours.
+
+1175
+01:06:25,180 --> 01:06:27,100
+We're not gonna spend time
+on how to write slacks.
+
+1176
+01:06:27,520 --> 01:06:30,700
+We'll start with the advanced off on
+on Wednesday and you'll need this for
+
+1177
+01:06:30,700 --> 01:06:35,050
+homework one. Okay? All right
+guys. See you on Wednesday.
+
+1178
+01:06:36,960 --> 01:06:41,820
+Favorite. Oh, what is it? Yes,
+
+1179
+01:06:42,120 --> 01:06:46,950
+it's the [inaudible] p e packs.
+I'll make a best somebody. Fuck you.
+
+1180
+01:06:46,960 --> 01:06:48,360
+Do it like a trio.
+
+1181
+01:06:48,810 --> 01:06:52,470
+I used to flip the teeth to
+the e to the t comes dope.
+
+1182
+01:06:52,620 --> 01:06:57,620
+I'll play the game with no rules on
+the cuffs of [inaudible] with the bus.
+
+1183
+01:06:57,660 --> 01:07:02,160
+A cap on the road, Bushwick
+gonna go with a blow to the eyes.
+
+1184
+01:07:04,020 --> 01:07:08,020
+You're wrong. Rolling
+with the fuck and stop z.
+
+1185
+01:07:09,150 --> 01:07:13,350
+When I potty by the 12
+pack case, six pack,
+
+1186
+01:07:13,380 --> 01:07:17,730
+40 aggregates the real price. I'll drink.
+What's y'all, what's Ricky? Buckets.
+
+1187
+01:07:17,740 --> 01:07:20,340
+Toil. They build, make some fat,
+
+1188
+01:07:20,580 --> 01:07:23,460
+but say nihs is straight
+so it really don't matter.
+
